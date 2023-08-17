@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name[]=theTroposphere Blueprint
+GenericName[]=Weather
+Exec=thetroposphere-blueprint %U
+Icon=com.vicr123.thetroposphere_blueprint
+StartupWMClass=theTroposphere

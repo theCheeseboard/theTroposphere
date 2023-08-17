@@ -1,0 +1,7 @@
+set(libthetroposphere_VERSION 1.0.0)
+
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/libthetroposphereTargets.cmake")
+
+check_required_components(libthetroposphere)
