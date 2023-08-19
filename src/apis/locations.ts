@@ -1,7 +1,7 @@
 import express from "express"
 import * as fs from "fs/promises";
-import {GeonamesEntry} from "../helpers/geonames-entry";
-import {Admin1Manager} from "../helpers/admin1-manager";
+import {GeonamesEntry} from "../helpers/geonames-entry.js";
+import {Admin1Manager} from "../helpers/admin1-manager.js";
 
 const cities = await fs.readFile("./dist/cities500.txt", {
     encoding: "utf-8"

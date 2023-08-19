@@ -1,5 +1,5 @@
 import express from "express";
-import {Locations} from "./locations";
+import {Locations} from "./locations.js";
 
 const Api = express.Router();
 Api.use(express.json());

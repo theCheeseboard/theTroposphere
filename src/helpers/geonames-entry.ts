@@ -1,4 +1,4 @@
-import { Admin1Manager } from './admin1-manager';
+import { Admin1Manager } from './admin1-manager.js';
 
 export class GeonamesEntry {
 	private admin1Manager: Admin1Manager;

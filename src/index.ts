@@ -1,5 +1,5 @@
 import express from "express";
-import {Api} from "./apis";
+import {Api} from "./apis/index.js";
 
 const port = process.env.PORT || 3000;
 
