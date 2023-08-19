@@ -48,7 +48,10 @@ QCoro::Task<> AddLocationPopover::performSearch() {
     QJsonObject payload;
     payload.insert("query", ui->queryEdit->text());
 
-    auto response = co_await d->mgr.post(QNetworkRequest(QStringLiteral("https://api.thetroposphere.vicr123.com/api/locations/search")), QJsonDocument(payload).toJson(QJsonDocument::Compact));
+    QNetworkRequest request(QStringLiteral("https://api-thetroposphere.vicr123.com/api/locations/search"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    auto response = co_await d->mgr.post(request, QJsonDocument(payload).toJson(QJsonDocument::Compact));
     if (response->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 200) {
         // Error!
         tWarn("AddLocationPopover") << "Search request failed";
@@ -70,7 +73,7 @@ QCoro::Task<> AddLocationPopover::performSearch() {
     for (auto el : responseNames) {
         auto name = el.toObject();
 
-        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("lat").toString().toDouble(), name.value("lng").toString().toDouble());
+        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("lat").toDouble(), name.value("lng").toDouble());
 
         auto item = new QListWidgetItem();
         item->setText(QStringLiteral("%1, %2, %3").arg(loc.name, loc.admin1, loc.country));

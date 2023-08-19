@@ -17,9 +17,9 @@ QString TroposphereHelper::readableTemperature(double temperature) {
         }
     }
 
-    if (units == "metric") {
-        return tr("%1 ℃").arg(temperature, 0, 'f', 1);
-    } else {
+    if (units == "imperial") {
         return tr("%1 ℉").arg(temperature * 9 / 5 + 32, 0, 'f', 1);
+    } else {
+        return tr("%1 ℃").arg(temperature, 0, 'f', 1);
     }
 }
