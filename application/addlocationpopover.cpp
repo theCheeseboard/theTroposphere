@@ -1,24 +1,23 @@
 #include "addlocationpopover.h"
 #include "ui_addlocationpopover.h"
 
-#include <QTimer>
+#include <QCoroNetwork>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QCoroNetwork>
 #include <QNetworkAccessManager>
-#include <QJsonArray>
+#include <QTimer>
 #include <tlogger.h>
 
 struct AddLocationPopoverPrivate {
-    QNetworkAccessManager mgr;
-    QTimer* timer;
-    quint64 nonce = 0;
+        QNetworkAccessManager mgr;
+        QTimer* timer;
+        quint64 nonce = 0;
 };
 
-AddLocationPopover::AddLocationPopover(QWidget *parent) :
+AddLocationPopover::AddLocationPopover(QWidget* parent) :
     QWidget(parent),
-    ui(new Ui::AddLocationPopover)
-{
+    ui(new Ui::AddLocationPopover) {
     ui->setupUi(this);
     d = new AddLocationPopoverPrivate();
 
@@ -31,19 +30,16 @@ AddLocationPopover::AddLocationPopover(QWidget *parent) :
     ui->stackedWidget->setCurrentWidget(ui->resultsPage, false);
 }
 
-AddLocationPopover::~AddLocationPopover()
-{
+AddLocationPopover::~AddLocationPopover() {
     delete ui;
     delete d;
 }
 
-void AddLocationPopover::on_titleLabel_backButtonClicked()
-{
+void AddLocationPopover::on_titleLabel_backButtonClicked() {
     emit done();
 }
 
-QCoro::Task<> AddLocationPopover::performSearch()
-{
+QCoro::Task<> AddLocationPopover::performSearch() {
     auto nonce = d->nonce;
     ui->listWidget->clear();
 
@@ -74,7 +70,7 @@ QCoro::Task<> AddLocationPopover::performSearch()
     for (auto el : responseNames) {
         auto name = el.toObject();
 
-        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("lat").toDouble(), name.value("lng").toDouble());
+        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("lat").toString().toDouble(), name.value("lng").toString().toDouble());
 
         auto item = new QListWidgetItem();
         item->setText(QStringLiteral("%1, %2, %3").arg(loc.name, loc.admin1, loc.country));
@@ -86,9 +82,7 @@ QCoro::Task<> AddLocationPopover::performSearch()
     ui->stackedWidget->setCurrentWidget(ui->resultsPage);
 }
 
-
-void AddLocationPopover::on_queryEdit_textChanged(const QString &arg1)
-{
+void AddLocationPopover::on_queryEdit_textChanged(const QString& arg1) {
     if (ui->queryEdit->text().length() < 3) {
         ui->stackedWidget->setCurrentWidget(ui->resultsPage);
     } else {
@@ -99,10 +93,7 @@ void AddLocationPopover::on_queryEdit_textChanged(const QString &arg1)
     }
 }
 
-
-void AddLocationPopover::on_listWidget_itemActivated(QListWidgetItem *item)
-{
+void AddLocationPopover::on_listWidget_itemActivated(QListWidgetItem* item) {
     emit locationSelected(item->data(Qt::UserRole).value<TroposphereLocation>());
     emit done();
 }
-

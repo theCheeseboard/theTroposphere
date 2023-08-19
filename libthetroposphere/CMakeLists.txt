@@ -2,15 +2,19 @@ cmake_minimum_required(VERSION 3.4.0)
 
 project(lib VERSION 1.0.0 LANGUAGES CXX)
 
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 find_package(libcontemporary REQUIRED)
 
 set(SOURCES
     tropospherelocation.cpp
+    weatherdata.cpp
+    weathertimeseries.cpp
 )
 
 set(HEADERS
     tropospherelocation.h
+    weatherdata.h
+    weathertimeseries.h
     libthetroposphere_global.h
 )
 
@@ -27,7 +31,7 @@ set_target_properties(libthetroposphere PROPERTIES
         VERSION 1.0.0
         PUBLIC_HEADER "${HEADERS}")
 
-target_link_libraries(libthetroposphere Qt::Widgets)
+target_link_libraries(libthetroposphere Qt::Widgets Qt::Network libcontemporary)
 target_compile_definitions(libthetroposphere PRIVATE LIBTHETROPOSPHERE_LIBRARY)
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

@@ -1,24 +1,24 @@
 #ifndef TROPOSPHERELOCATION_H
 #define TROPOSPHERELOCATION_H
 
+#include "libthetroposphere_global.h"
 #include <QString>
 
-struct TroposphereLocation
-{
-    TroposphereLocation();
-    TroposphereLocation(QString serialised);
-    TroposphereLocation(QString name, QString admin1, QString country, double lat, double lng);
+struct LIBTHETROPOSPHERE_EXPORT TroposphereLocation {
+        TroposphereLocation();
+        TroposphereLocation(QString serialised);
+        TroposphereLocation(QString name, QString admin1, QString country, double lat, double lng);
 
-    QString serialise();
+        QString serialise();
 
-    bool locatedLocation = false;
+        bool locatedLocation = false;
 
-    QString name;
-    QString admin1;
-    QString country;
+        QString name;
+        QString admin1;
+        QString country;
 
-    double lat;
-    double lng;
+        double lat;
+        double lng;
 };
 
 #endif // TROPOSPHERELOCATION_H

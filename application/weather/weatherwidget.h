@@ -2,27 +2,30 @@
 #define WEATHERWIDGET_H
 
 #include "tropospherelocation.h"
+#include <QCoroTask>
 #include <QWidget>
 
 namespace Ui {
-class WeatherWidget;
+    class WeatherWidget;
 }
 
 struct WeatherWidgetPrivate;
-class WeatherWidget : public QWidget
-{
-    Q_OBJECT
+class WeatherWidget : public QWidget {
+        Q_OBJECT
 
-public:
-    explicit WeatherWidget(QWidget *parent = nullptr);
-    ~WeatherWidget();
+    public:
+        explicit WeatherWidget(QWidget* parent = nullptr);
+        ~WeatherWidget();
 
-    void setLocation(TroposphereLocation loc);
+        QCoro::Task<> setLocation(TroposphereLocation loc);
 
+    private:
+        Ui::WeatherWidget* ui;
+        WeatherWidgetPrivate* d;
 
-private:
-    Ui::WeatherWidget *ui;
-    WeatherWidgetPrivate* d;
+        // QWidget interface
+    protected:
+        void resizeEvent(QResizeEvent *event);
 };
 
 #endif // WEATHERWIDGET_H

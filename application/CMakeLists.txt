@@ -11,12 +11,14 @@ set(SOURCES
         weatherpane.cpp weatherpane.ui
         addlocationpopover.cpp addlocationpopover.ui
         weather/weatherwidget.cpp weather/weatherwidget.ui
+        tropospherehelper.cpp
 )
 
 set(HEADERS
         mainwindow.h
         weatherpane.h
         addlocationpopover.h
+        tropospherehelper.h
         weather/weatherwidget.h
 )
 
