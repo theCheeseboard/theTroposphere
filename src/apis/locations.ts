@@ -15,8 +15,8 @@ const Locations = express.Router();
 Locations.post("/search", (req, res) => {
     const response = JSON.stringify(
         cities.split('\n')
-            .filter(city => city.toLowerCase().includes(req.body.query.toLowerCase()))
             .map(city => new GeonamesEntry(city, admin1Manager))
+            .filter(city => city.hitsSearch(req.body.query))
             .sort((a, b) => b.population - a.population)
             .map(city => city.asObject())
     )

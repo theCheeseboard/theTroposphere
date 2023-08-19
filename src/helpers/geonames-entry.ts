@@ -74,8 +74,8 @@ export class GeonamesEntry {
 
 	hitsSearch(query: string) {
 		if (this.asciiName?.toLowerCase()?.includes(query.toLowerCase())) return true;
-		// if (this.cityName?.toLowerCase()?.includes(query.toLowerCase())) return true;
-		// if (this.alternateNames?.some(name => name.toLowerCase().includes(query.toLowerCase()))) return true;
+		if (this.cityName?.toLowerCase()?.includes(query.toLowerCase())) return true;
+		if (this.alternateNames?.some(name => name.toLowerCase().includes(query.toLowerCase()))) return true;
 		return false;
 	}
 }
