@@ -50,11 +50,14 @@ MainWindow::MainWindow(QWidget* parent) :
 
     tHelpMenu* helpMenu = new tHelpMenu(this);
 
+    menu->addAction(ui->actionAdd_City);
+    menu->addAction(ui->actionClose_Tab);
+    menu->addSeparator();
     menu->addMenu(helpMenu);
     menu->addAction(ui->actionExit);
 
     ui->menuButton->setIcon(tApplication::applicationIcon());
-    ui->menuButton->setIconSize(SC_DPI_T(QSize(24, 24), QSize));
+    ui->menuButton->setIconSize(QSize(24, 24));
     ui->menuButton->setMenu(menu);
 #endif
 
@@ -127,4 +130,8 @@ void MainWindow::on_actionClose_Tab_triggered() {
 void MainWindow::on_stackedWidget_currentChanged(int arg1) {
     auto pane = static_cast<WeatherPane*>(ui->stackedWidget->currentWidget());
     ui->actionClose_Tab->setEnabled(!pane->location().locatedLocation);
+}
+
+void MainWindow::on_actionAdd_City_triggered() {
+    this->newTab();
 }

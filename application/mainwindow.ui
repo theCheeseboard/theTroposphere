@@ -108,13 +108,14 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>43</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionAdd_City"/>
     <addaction name="actionClose_Tab"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -135,13 +136,25 @@
   </action>
   <action name="actionClose_Tab">
    <property name="icon">
-    <iconset theme="window-close"/>
+    <iconset theme="tab-close">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Close Tab</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionAdd_City">
+   <property name="icon">
+    <iconset theme="tab-new"/>
+   </property>
+   <property name="text">
+    <string>Add City</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

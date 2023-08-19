@@ -28,6 +28,8 @@ class MainWindow : public QMainWindow {
 
         void on_stackedWidget_currentChanged(int arg1);
 
+        void on_actionAdd_City_triggered();
+
     private:
         Ui::MainWindow* ui;
         MainWindowPrivate* d;
