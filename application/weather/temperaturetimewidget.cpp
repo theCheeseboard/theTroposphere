@@ -92,7 +92,7 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
 
             auto time = date.toString(QLocale().timeFormat(QLocale::ShortFormat));
             QRectF timeBounds;
-            timeBounds.setWidth(metrics.horizontalAdvance(time));
+            timeBounds.setWidth(metrics.horizontalAdvance(time) + 1);
             timeBounds.setHeight(metrics.height());
             if (this->layoutDirection() == Qt::LeftToRight) {
                 timeBounds.moveLeft(bounds.left() + spacing);

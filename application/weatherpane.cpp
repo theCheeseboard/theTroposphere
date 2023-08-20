@@ -6,10 +6,12 @@
 #endif
 #include "weather/weatherwidget.h"
 #include <QGeoPositionInfoSource>
+#include <QTimeZone>
 
 struct WeatherPanePrivate {
         TroposphereLocation location;
         WeatherWidget* weatherWidget = nullptr;
+        QGeoPositionInfoSource* geoSource;
 };
 
 WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
@@ -18,6 +20,9 @@ WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
     ui->setupUi(this);
     d = new WeatherPanePrivate();
     d->location = location;
+    d->geoSource = QGeoPositionInfoSource::createDefaultSource(this);
+
+    d->geoSource->startUpdates();
 
     this->updateData();
 }
@@ -57,7 +62,9 @@ void WeatherPane::updateData() {
         }
 
 #endif
-        auto source = QGeoPositionInfoSource::createDefaultSource(this);
+
+        auto position = d->geoSource->lastKnownPosition();
+        d->location = TroposphereLocation("my location", "admin1", "country", QTimeZone::systemTimeZoneId(), position.coordinate().latitude(), position.coordinate().longitude());
     }
 
     if (!d->weatherWidget) {
