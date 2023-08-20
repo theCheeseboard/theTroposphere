@@ -22,7 +22,7 @@ WeatherTimeseries::WeatherTimeseries(QJsonObject timeseriesData, QObject* parent
     auto data = timeseriesData.value("data").toObject();
     auto instantData = data.value("instant").toObject().value("details").toObject();
 
-    d->time = QDateTime::fromString(timeseriesData.value("time").toString());
+    d->time = QDateTime::fromString(timeseriesData.value("time").toString(), Qt::ISODate);
     d->temperature = instantData.value("air_temperature").toDouble();
     d->humidity = instantData.value("relative_humidity").toDouble();
     d->windSpeed = instantData.value("wind_speed").toDouble();
@@ -129,6 +129,18 @@ WeatherTimeseries::SymbolCode WeatherTimeseries::symbolCodeForString(QString str
     return symbolsMap.value(string, SymbolCode::Unknown);
 }
 
+QDateTime WeatherTimeseries::time() {
+    return d->time;
+}
+
 double WeatherTimeseries::temperature() {
     return d->temperature;
+}
+
+bool WeatherTimeseries::is1HourDataAvailable() {
+    return d->is1HourDataAvailable;
+}
+
+double WeatherTimeseries::precipitation1Hour() {
+    return d->precipitation1Hour;
 }

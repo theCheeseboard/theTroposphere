@@ -73,7 +73,7 @@ QCoro::Task<> AddLocationPopover::performSearch() {
     for (auto el : responseNames) {
         auto name = el.toObject();
 
-        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("lat").toDouble(), name.value("lng").toDouble());
+        TroposphereLocation loc(name.value("name").toString(), name.value("admin1").toString(), name.value("countryCode").toString(), name.value("timezone").toString(), name.value("lat").toDouble(), name.value("lng").toDouble());
 
         auto item = new QListWidgetItem();
         item->setText(QStringLiteral("%1, %2, %3").arg(loc.name, loc.admin1, loc.country));

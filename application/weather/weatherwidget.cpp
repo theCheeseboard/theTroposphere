@@ -30,6 +30,7 @@ QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
     try {
         auto currentWeather = d->weatherData->timeseries().first();
         ui->mainTemperatureLabel->setText(TroposphereHelper::readableTemperature(currentWeather->temperature()));
+        ui->temperatureTimeWidget->setWeatherData(d->weatherData, loc.timezone);
     } catch (tRangeException ex) {
         ui->mainTemperatureLabel->setText(QStringLiteral("--"));
     }

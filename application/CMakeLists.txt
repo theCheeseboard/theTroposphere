@@ -11,6 +11,7 @@ set(SOURCES
         weatherpane.cpp weatherpane.ui
         addlocationpopover.cpp addlocationpopover.ui
         weather/weatherwidget.cpp weather/weatherwidget.ui
+        weather/temperaturetimewidget.cpp weather/temperaturetimewidget.ui
         tropospherehelper.cpp
 )
 
@@ -20,6 +21,7 @@ set(HEADERS
         addlocationpopover.h
         tropospherehelper.h
         weather/weatherwidget.h
+        weather/temperaturetimewidget.h
 )
 
 # Find Apple lproj files

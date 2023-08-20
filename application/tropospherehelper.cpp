@@ -23,3 +23,9 @@ QString TroposphereHelper::readableTemperature(double temperature) {
         return tr("%1 ℃").arg(temperature, 0, 'f', 1);
     }
 }
+
+QDateTime TroposphereHelper::toLocalTime(QDateTime date, QTimeZone timezone) {
+    QDateTime newDate(date);
+    auto utcOffset = timezone.offsetFromUtc(date);
+    return newDate.addSecs(utcOffset);
+}

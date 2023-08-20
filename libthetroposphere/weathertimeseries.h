@@ -99,7 +99,12 @@ class WeatherTimeseries : public QObject {
 
         SymbolCode symbolCodeForString(QString string);
 
+        QDateTime time();
+
         double temperature(); // celsius
+
+        bool is1HourDataAvailable();
+        double precipitation1Hour(); // millimeters
 
     signals:
 

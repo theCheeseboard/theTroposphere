@@ -7,7 +7,7 @@
 struct LIBTHETROPOSPHERE_EXPORT TroposphereLocation {
         TroposphereLocation();
         TroposphereLocation(QString serialised);
-        TroposphereLocation(QString name, QString admin1, QString country, double lat, double lng);
+        TroposphereLocation(QString name, QString admin1, QString country, QString timezone, double lat, double lng);
 
         QString serialise();
 
@@ -16,6 +16,7 @@ struct LIBTHETROPOSPHERE_EXPORT TroposphereLocation {
         QString name;
         QString admin1;
         QString country;
+        QString timezone;
 
         double lat;
         double lng;
