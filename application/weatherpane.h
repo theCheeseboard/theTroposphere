@@ -5,30 +5,29 @@
 #include <tropospherelocation.h>
 
 namespace Ui {
-class WeatherPane;
+    class WeatherPane;
 }
 
 struct WeatherPanePrivate;
-class WeatherPane : public QWidget
-{
-    Q_OBJECT
+class WeatherPane : public QWidget {
+        Q_OBJECT
 
-public:
-    explicit WeatherPane(TroposphereLocation location, QWidget *parent = nullptr);
-    ~WeatherPane();
+    public:
+        explicit WeatherPane(TroposphereLocation location, QWidget* parent = nullptr);
+        ~WeatherPane();
 
-    TroposphereLocation location();
+        TroposphereLocation location();
 
-private slots:
-    void on_grantPermissionButton_clicked();
+    private slots:
+        void on_grantPermissionButton_clicked();
 
-    void on_openSystemSettingsButton_clicked();
+        void on_openSystemSettingsButton_clicked();
 
-private:
-    Ui::WeatherPane *ui;
-    WeatherPanePrivate* d;
+    private:
+        Ui::WeatherPane* ui;
+        WeatherPanePrivate* d;
 
-    void updateData();
+        QCoro::Task<> updateData();
 };
 
 #endif // WEATHERPANE_H

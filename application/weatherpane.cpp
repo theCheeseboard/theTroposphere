@@ -36,7 +36,7 @@ TroposphereLocation WeatherPane::location() {
     return d->location;
 }
 
-void WeatherPane::updateData() {
+QCoro::Task<> WeatherPane::updateData() {
     if (d->location.locatedLocation) {
 #if QT_CONFIG(permissions)
         QLocationPermission locationPermission;
@@ -64,7 +64,7 @@ void WeatherPane::updateData() {
 #endif
 
         auto position = d->geoSource->lastKnownPosition();
-        d->location = TroposphereLocation("my location", "admin1", "country", QTimeZone::systemTimeZoneId(), position.coordinate().latitude(), position.coordinate().longitude());
+        d->location = co_await TroposphereLocation::reverseGeocode(position.coordinate().latitude(), position.coordinate().longitude());
     }
 
     if (!d->weatherWidget) {
