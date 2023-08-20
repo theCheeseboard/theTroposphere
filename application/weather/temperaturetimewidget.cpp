@@ -94,33 +94,53 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
             QRectF timeBounds;
             timeBounds.setWidth(metrics.horizontalAdvance(time));
             timeBounds.setHeight(metrics.height());
-            timeBounds.moveLeft(bounds.left() + spacing);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                timeBounds.moveLeft(bounds.left() + spacing);
+            } else {
+                timeBounds.moveRight(bounds.right() - spacing);
+            }
             timeBounds.moveTop(bounds.top() + spacing);
 
             QRectF iconBounds;
             iconBounds.setSize(iconSize);
-            iconBounds.moveLeft(bounds.left() + spacing);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                iconBounds.moveLeft(bounds.left() + spacing);
+            } else {
+                iconBounds.moveRight(bounds.right() - spacing);
+            }
             iconBounds.moveTop(timeBounds.bottom() + spacing);
 
             auto temperature = TroposphereHelper::readableTemperature(timeseries->temperature());
             QRectF temperatureBounds;
             temperatureBounds.setWidth(metrics.horizontalAdvance(temperature) + 1);
             temperatureBounds.setHeight(metrics.height());
-            temperatureBounds.moveLeft(bounds.left() + spacing);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                temperatureBounds.moveLeft(bounds.left() + spacing);
+            } else {
+                temperatureBounds.moveRight(bounds.right() - spacing);
+            }
             temperatureBounds.moveTop(temperatureBottom - metrics.height());
 
             auto precipitation = tr("%1 mm").arg(timeseries->precipitation1Hour());
             QRectF precipitationBounds;
             precipitationBounds.setWidth(metrics.horizontalAdvance(precipitation) + 1);
             precipitationBounds.setHeight(metrics.height());
-            precipitationBounds.moveLeft(bounds.left() + spacing);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                precipitationBounds.moveLeft(bounds.left() + spacing);
+            } else {
+                precipitationBounds.moveRight(bounds.right() - spacing);
+            }
             precipitationBounds.moveTop(precipitationBottom - metrics.height());
 
             auto windSpeed = TroposphereHelper::readableSpeed(timeseries->windSpeed());
             QRectF windSpeedBounds;
             windSpeedBounds.setWidth(metrics.horizontalAdvance(windSpeed) + 1);
             windSpeedBounds.setHeight(metrics.height());
-            windSpeedBounds.moveLeft(bounds.left() + spacing);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                windSpeedBounds.moveLeft(bounds.left() + spacing);
+            } else {
+                windSpeedBounds.moveRight(bounds.right() - spacing);
+            }
             windSpeedBounds.moveTop(windSpeedBottom - metrics.height());
 
             painter->setPen(this->palette().color(QPalette::WindowText));
@@ -133,10 +153,11 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
             painter->drawText(windSpeedBounds, windSpeed);
 
             painter->setPen(this->palette().color(QPalette::Disabled, QPalette::WindowText));
-            painter->drawLine(bounds.topLeft(), bounds.bottomLeft());
-
-            //            painter.setBrush(Qt::red);
-            //            painter.drawRect(bounds);
+            if (this->layoutDirection() == Qt::LeftToRight) {
+                painter->drawLine(bounds.topLeft(), bounds.bottomLeft());
+            } else {
+                painter->drawLine(bounds.topRight(), bounds.bottomRight());
+            }
         });
     }
 
@@ -180,12 +201,9 @@ void TemperatureTimeWidget::paintGraph(QPainter* painter, QRectF bounds, QList<d
     for (auto i = 0; i < normalised.length(); i++) {
         auto x = this->layoutDirection() == Qt::LeftToRight ? (bounds.left() + d->paneWidth * i) : bounds.left() + (bounds.width() - d->paneWidth * i);
         auto y = bounds.top() + bounds.height() - bounds.height() * (normalised.at(i) * 0.6 + 0.2);
+        auto adjustedX = x + (this->layoutDirection() == Qt::LeftToRight ? -d->paneWidth : d->paneWidth) / 2;
 
-        if (this->layoutDirection() == Qt::LeftToRight) {
-            path.cubicTo(QPointF(x - d->paneWidth / 2, oldY), QPointF(x - d->paneWidth / 2, y), QPointF(x, y));
-        } else {
-            path.cubicTo(QPointF(x + d->paneWidth / 2, y), QPointF(x + d->paneWidth / 2, oldY), QPointF(x, y));
-        }
+        path.cubicTo(QPointF(adjustedX, oldY), QPointF(adjustedX, y), QPointF(x, y));
         oldY = y;
     }
 

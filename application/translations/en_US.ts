@@ -92,7 +92,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weather/temperaturetimewidget.cpp" line="112"/>
+        <location filename="../weather/temperaturetimewidget.cpp" line="124"/>
         <source>%1 mm</source>
         <translation type="unfinished"></translation>
     </message>
