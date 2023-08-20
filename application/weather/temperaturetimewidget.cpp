@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QTimeZone>
+#include <QWheelEvent>
 #include <tpaintcalculator.h>
 
 struct TemperatureTimeWidgetPrivate {
@@ -42,6 +43,106 @@ void TemperatureTimeWidget::setWeatherData(WeatherDataPtr weatherData, QString t
     this->update();
 }
 
+tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const {
+    auto metrics = this->fontMetrics();
+    auto scroll = ui->horizontalScrollBar->value();
+
+    tPaintCalculator paintCalculator;
+    paintCalculator.setDrawBounds(this->size());
+    paintCalculator.setLayoutDirection(this->layoutDirection());
+
+    constexpr int spacing = 9;
+    QSize iconSize(32, 32);
+
+    auto timeBottom = spacing + metrics.height();
+    auto iconBottom = timeBottom + iconSize.height() + spacing;
+    auto temperatureBottom = iconBottom + 100 + spacing;
+    auto precipitationBottom = temperatureBottom + 100 + spacing;
+    auto windSpeedBottom = precipitationBottom + 100 + spacing;
+
+    paintCalculator.addRect(QRectF(-scroll, iconBottom + spacing, this->width(), 100), [painter, this](QRectF bounds) {
+        paintGraph(painter, bounds, tRange(d->timeseries).map<double>([](WeatherTimeseries* timeseries) {
+                                                             return timeseries->temperature();
+                                                         })
+                                        .toList(),
+            Qt::yellow);
+    });
+
+    paintCalculator.addRect(QRectF(-scroll, temperatureBottom + spacing, this->width(), 100), [painter, this](QRectF bounds) {
+        paintGraph(painter, bounds, tRange(d->timeseries).map<double>([](WeatherTimeseries* timeseries) {
+                                                             return timeseries->precipitation1Hour();
+                                                         })
+                                        .toList(),
+            Qt::cyan);
+    });
+
+    paintCalculator.addRect(QRectF(-scroll, precipitationBottom + spacing, this->width(), 100), [painter, this](QRectF bounds) {
+        paintGraph(painter, bounds, tRange(d->timeseries).map<double>([](WeatherTimeseries* timeseries) {
+                                                             return timeseries->windSpeed();
+                                                         })
+                                        .toList(),
+            QColor(50, 0, 255));
+    });
+
+    for (auto i = 0; i < d->timeseries.length() - 1; i++) {
+        auto timeseries = d->timeseries.at(i);
+        QRectF bounds(d->paneWidth * i - scroll, 0, d->paneWidth, this->height());
+        paintCalculator.addRect(bounds, [painter, timeseries, this, metrics, iconSize, temperatureBottom, precipitationBottom, windSpeedBottom](QRectF bounds) {
+            auto date = TroposphereHelper::toLocalTime(timeseries->time(), d->timezone);
+
+            auto time = date.toString(QLocale().timeFormat(QLocale::ShortFormat));
+            QRectF timeBounds;
+            timeBounds.setWidth(metrics.horizontalAdvance(time));
+            timeBounds.setHeight(metrics.height());
+            timeBounds.moveLeft(bounds.left() + spacing);
+            timeBounds.moveTop(bounds.top() + spacing);
+
+            QRectF iconBounds;
+            iconBounds.setSize(iconSize);
+            iconBounds.moveLeft(bounds.left() + spacing);
+            iconBounds.moveTop(timeBounds.bottom() + spacing);
+
+            auto temperature = TroposphereHelper::readableTemperature(timeseries->temperature());
+            QRectF temperatureBounds;
+            temperatureBounds.setWidth(metrics.horizontalAdvance(temperature) + 1);
+            temperatureBounds.setHeight(metrics.height());
+            temperatureBounds.moveLeft(bounds.left() + spacing);
+            temperatureBounds.moveTop(temperatureBottom - metrics.height());
+
+            auto precipitation = tr("%1 mm").arg(timeseries->precipitation1Hour());
+            QRectF precipitationBounds;
+            precipitationBounds.setWidth(metrics.horizontalAdvance(precipitation) + 1);
+            precipitationBounds.setHeight(metrics.height());
+            precipitationBounds.moveLeft(bounds.left() + spacing);
+            precipitationBounds.moveTop(precipitationBottom - metrics.height());
+
+            auto windSpeed = TroposphereHelper::readableSpeed(timeseries->windSpeed());
+            QRectF windSpeedBounds;
+            windSpeedBounds.setWidth(metrics.horizontalAdvance(windSpeed) + 1);
+            windSpeedBounds.setHeight(metrics.height());
+            windSpeedBounds.moveLeft(bounds.left() + spacing);
+            windSpeedBounds.moveTop(windSpeedBottom - metrics.height());
+
+            painter->setPen(this->palette().color(QPalette::WindowText));
+            painter->drawText(timeBounds, time);
+
+            painter->fillRect(iconBounds, Qt::red);
+
+            painter->drawText(temperatureBounds, temperature);
+            painter->drawText(precipitationBounds, precipitation);
+            painter->drawText(windSpeedBounds, windSpeed);
+
+            painter->setPen(this->palette().color(QPalette::Disabled, QPalette::WindowText));
+            painter->drawLine(bounds.topLeft(), bounds.bottomLeft());
+
+            //            painter.setBrush(Qt::red);
+            //            painter.drawRect(bounds);
+        });
+    }
+
+    return paintCalculator;
+}
+
 void TemperatureTimeWidget::updateScrollBar() {
     auto scrollPixels = (d->timeseries.length() - 1) * d->paneWidth;
     ui->horizontalScrollBar->setMaximum(qMax(0, scrollPixels - this->width()));
@@ -49,13 +150,13 @@ void TemperatureTimeWidget::updateScrollBar() {
     ui->horizontalScrollBar->setPageStep(this->width());
 }
 
-void TemperatureTimeWidget::paintGraph(QPainter* painter, QRectF bounds, QList<double> values, QColor lineColor, QColor fillColor) {
+void TemperatureTimeWidget::paintGraph(QPainter* painter, QRectF bounds, QList<double> values, QColor color) const {
     if (values.isEmpty()) return;
 
-    auto transparentFill1 = fillColor;
+    auto transparentFill1 = color;
     transparentFill1.setAlpha(200);
 
-    auto transparentFill2 = fillColor;
+    auto transparentFill2 = color;
     transparentFill2.setAlpha(0);
 
     QLinearGradient fillGradient;
@@ -94,89 +195,16 @@ void TemperatureTimeWidget::paintGraph(QPainter* painter, QRectF bounds, QList<d
     path.lineTo(QPointF(this->layoutDirection() == Qt::LeftToRight ? bounds.left() : bounds.right(), bounds.bottom()));
     painter->fillPath(path, fillGradient);
 
-    painter->setPen(QPen(lineColor, 3));
+    painter->setPen(QPen(color, 3));
     painter->drawPath(linePath);
 }
 
 void TemperatureTimeWidget::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    auto metrics = painter.fontMetrics();
-    auto scroll = ui->horizontalScrollBar->value();
+    painter.setRenderHint(QPainter::Antialiasing);
 
-    tPaintCalculator paintCalculator;
-    paintCalculator.setDrawBounds(this->size());
-    paintCalculator.setLayoutDirection(this->layoutDirection());
+    auto paintCalculator = this->paintCalculator(&painter);
     paintCalculator.setPainter(&painter);
-
-    constexpr int spacing = 9;
-    QSize iconSize(32, 32);
-
-    auto timeBottom = spacing + metrics.height();
-    auto iconBottom = timeBottom + iconSize.height() + spacing;
-    auto temperatureBottom = iconBottom + 100 + spacing;
-    auto precipitationBottom = temperatureBottom + 100 + spacing;
-
-    paintCalculator.addRect(QRectF(-scroll, iconBottom + spacing, this->width(), 100), [&painter, this](QRectF bounds) {
-        paintGraph(&painter, bounds, tRange(d->timeseries).map<double>([](WeatherTimeseries* timeseries) {
-                                                              return timeseries->temperature();
-                                                          })
-                                         .toList(),
-            Qt::yellow, Qt::yellow);
-    });
-
-    paintCalculator.addRect(QRectF(-scroll, temperatureBottom + spacing, this->width(), 100), [&painter, this](QRectF bounds) {
-        paintGraph(&painter, bounds, tRange(d->timeseries).map<double>([](WeatherTimeseries* timeseries) {
-                                                              return timeseries->precipitation1Hour();
-                                                          })
-                                         .toList(),
-            Qt::cyan, Qt::cyan);
-    });
-
-    for (auto i = 0; i < d->timeseries.length() - 1; i++) {
-        auto timeseries = d->timeseries.at(i);
-        QRectF bounds(d->paneWidth * i - scroll, 0, d->paneWidth, this->height());
-        paintCalculator.addRect(bounds, [&painter, timeseries, this, metrics, iconSize, temperatureBottom, precipitationBottom](QRectF bounds) {
-            auto date = TroposphereHelper::toLocalTime(timeseries->time(), d->timezone);
-
-            auto time = date.toString(QLocale().timeFormat(QLocale::ShortFormat));
-            QRectF timeBounds;
-            timeBounds.setWidth(metrics.horizontalAdvance(time));
-            timeBounds.setHeight(metrics.height());
-            timeBounds.moveCenter(bounds.center());
-            timeBounds.moveTop(bounds.top() + spacing);
-
-            QRectF iconBounds;
-            iconBounds.setSize(iconSize);
-            iconBounds.moveCenter(bounds.center());
-            iconBounds.moveTop(timeBounds.bottom() + spacing);
-
-            auto temperature = TroposphereHelper::readableTemperature(timeseries->temperature());
-            QRectF temperatureBounds;
-            temperatureBounds.setWidth(metrics.horizontalAdvance(temperature) + 1);
-            temperatureBounds.setHeight(metrics.height());
-            temperatureBounds.moveCenter(bounds.center());
-            temperatureBounds.moveTop(temperatureBottom - metrics.height());
-
-            auto precipitation = tr("%1 mm").arg(timeseries->precipitation1Hour());
-            QRectF precipitationBounds;
-            precipitationBounds.setWidth(metrics.horizontalAdvance(precipitation) + 1);
-            precipitationBounds.setHeight(metrics.height());
-            precipitationBounds.moveCenter(bounds.center());
-            precipitationBounds.moveTop(precipitationBottom - metrics.height());
-
-            painter.setPen(this->palette().color(QPalette::WindowText));
-            painter.drawText(timeBounds, time);
-
-            painter.fillRect(iconBounds, Qt::red);
-
-            painter.drawText(temperatureBounds, temperature);
-            painter.drawText(precipitationBounds, precipitation);
-
-            //            painter.setBrush(Qt::red);
-            //            painter.drawRect(bounds);
-        });
-    }
-
     paintCalculator.performPaint();
 }
 
@@ -185,11 +213,19 @@ void TemperatureTimeWidget::resizeEvent(QResizeEvent* event) {
 }
 
 QSize TemperatureTimeWidget::sizeHint() const {
-    auto sh = QWidget::sizeHint();
-    sh.setHeight(400);
-    return sh;
+    auto paintCalculator = this->paintCalculator(nullptr);
+    return paintCalculator.anchoredBoundingRect().size().toSize() + QSize(0, ui->horizontalScrollBar->height());
 }
 
-void TemperatureTimeWidget::on_horizontalScrollBar_sliderMoved(int position) {
+void TemperatureTimeWidget::wheelEvent(QWheelEvent* event) {
+    ui->horizontalScrollBar->setValue(ui->horizontalScrollBar->value() - event->angleDelta().x());
+    event->ignore();
+}
+
+void TemperatureTimeWidget::on_horizontalScrollBar_valueChanged(int value) {
     this->update();
+}
+
+QSize TemperatureTimeWidget::minimumSizeHint() const {
+    return this->sizeHint();
 }

@@ -92,7 +92,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weather/temperaturetimewidget.cpp" line="160"/>
+        <location filename="../weather/temperaturetimewidget.cpp" line="112"/>
         <source>%1 mm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -102,6 +102,16 @@
     <message>
         <location filename="../tropospherehelper.cpp" line="23"/>
         <source>%1 ℃</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tropospherehelper.cpp" line="31"/>
+        <source>%1 km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tropospherehelper.cpp" line="34"/>
+        <source>%1 mph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

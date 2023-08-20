@@ -101,7 +101,9 @@ class WeatherTimeseries : public QObject {
 
         QDateTime time();
 
-        double temperature(); // celsius
+        double temperature();   // degrees celsius
+        double windDirection(); // angular degrees
+        double windSpeed();     // meters per second
 
         bool is1HourDataAvailable();
         double precipitation1Hour(); // millimeters

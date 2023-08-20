@@ -24,6 +24,17 @@ QString TroposphereHelper::readableTemperature(double temperature) {
     }
 }
 
+QString TroposphereHelper::readableSpeed(double metersPerSecond) {
+    double kilometersPerHour = metersPerSecond * 3.6;
+    switch (QLocale().measurementSystem()) {
+        case QLocale::MetricSystem:
+            return tr("%1 km/h").arg(kilometersPerHour, 0, 'f', 2);
+        case QLocale::ImperialUKSystem:
+        case QLocale::ImperialUSSystem:
+            return tr("%1 mph").arg(kilometersPerHour * 1.609344, 0, 'f', 2);
+    }
+}
+
 QDateTime TroposphereHelper::toLocalTime(QDateTime date, QTimeZone timezone) {
     QDateTime newDate(date);
     auto utcOffset = timezone.offsetFromUtc(date);

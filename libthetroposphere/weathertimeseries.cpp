@@ -137,6 +137,14 @@ double WeatherTimeseries::temperature() {
     return d->temperature;
 }
 
+double WeatherTimeseries::windDirection() {
+    return d->windDirection;
+}
+
+double WeatherTimeseries::windSpeed() {
+    return d->windSpeed;
+}
+
 bool WeatherTimeseries::is1HourDataAvailable() {
     return d->is1HourDataAvailable;
 }

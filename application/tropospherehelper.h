@@ -8,6 +8,7 @@ class TroposphereHelper {
         Q_DECLARE_TR_FUNCTIONS(TroposphereHelper)
     public:
         static QString readableTemperature(double temperature);
+        static QString readableSpeed(double metersPerSecond);
         static QDateTime toLocalTime(QDateTime date, QTimeZone timezone);
 };
 
