@@ -57,7 +57,7 @@ export class GeonamesEntry {
 			admin2Code: this.admin2,
 			admin3Code: this.admin3,
 			admin4Code: this.admin4,
-			admin1: this.admin1Manager.entry(this.countryCode, this.admin1).name,
+			admin1: this.admin1Manager.entry(this.countryCode, this.admin1)?.name,
 			population: this.population,
 			timezone: this.timezone
 		}
@@ -77,5 +77,9 @@ export class GeonamesEntry {
 		if (this.cityName?.toLowerCase()?.includes(query.toLowerCase())) return true;
 		if (this.alternateNames?.some(name => name.toLowerCase().includes(query.toLowerCase()))) return true;
 		return false;
+	}
+
+	distanceTo(lat: number, lng: number) {
+		return Math.hypot(lat - parseFloat(this.lat), lng - parseFloat(this.lng));
 	}
 }
