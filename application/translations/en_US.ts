@@ -91,6 +91,11 @@
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../weather/temperaturetimewidget.cpp" line="160"/>
+        <source>%1 mm</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TroposphereHelper</name>

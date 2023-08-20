@@ -140,7 +140,7 @@
             </property>
            </spacer>
           </item>
-          <item>
+          <item alignment="Qt::AlignLeft">
            <widget class="tSubtitleLabel" name="label">
             <property name="text">
              <string>Hourly Weather</string>

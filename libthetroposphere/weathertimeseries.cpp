@@ -31,8 +31,8 @@ WeatherTimeseries::WeatherTimeseries(QJsonObject timeseriesData, QObject* parent
     if (data.contains("next_1_hours")) {
         auto next1Hour = data.value("next_1_hours").toObject();
         d->is1HourDataAvailable = true;
-        d->precipitation1Hour = instantData.value("precipitation_amount").toDouble();
-        d->symbolCode1Hour = symbolCodeForString(instantData.value("symbol_code").toString());
+        d->precipitation1Hour = next1Hour.value("details").toObject().value("precipitation_amount").toDouble();
+        d->symbolCode1Hour = symbolCodeForString(next1Hour.value("summary").toObject().value("symbol_code").toString());
     }
 }
 
