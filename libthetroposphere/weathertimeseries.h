@@ -2,6 +2,7 @@
 #define WEATHERTIMESERIES_H
 
 #include <QObject>
+#include <QSize>
 
 struct WeatherTimeseriesPrivate;
 class WeatherTimeseries : public QObject {
@@ -97,7 +98,18 @@ class WeatherTimeseries : public QObject {
             Unknown
         };
 
+        enum class BackgroundCode {
+            Day,
+            Night,
+            Raining,
+            Thundering,
+            Snowing,
+            Unknown
+        };
+
         SymbolCode symbolCodeForString(QString string);
+        BackgroundCode mapSymbolCodeToBackgroundCode(SymbolCode symbolCode);
+        QPixmap iconForSymbolCode(SymbolCode symbolCode, QSize size = {32, 32}, qreal devicePixelRatio = 1);
 
         QDateTime time();
 
@@ -107,6 +119,7 @@ class WeatherTimeseries : public QObject {
 
         bool is1HourDataAvailable();
         double precipitation1Hour(); // millimeters
+        WeatherTimeseries::SymbolCode symbolCode1Hour();
 
     signals:
 

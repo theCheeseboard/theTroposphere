@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) {
     a.setOrganizationName("theCheeseboard");
     a.setApplicationName(T_APPMETA_READABLE_NAME);
     a.setDesktopFileName(T_APPMETA_DESKTOP_ID);
+    a.addCopyrightLine(tApplication::translate("main", "Weather data from MET Norway"));
 
 #if defined(Q_OS_MAC)
     a.setQuitOnLastWindowClosed(false);

@@ -34,6 +34,13 @@ set_target_properties(libthetroposphere PROPERTIES
 target_link_libraries(libthetroposphere Qt::Widgets Qt::Network libcontemporary)
 target_compile_definitions(libthetroposphere PRIVATE LIBTHETROPOSPHERE_LIBRARY)
 
+file(GLOB WEATHER_ICON_FILES "${CMAKE_CURRENT_SOURCE_DIR}/weathericons/*.svg")
+qt_add_resources(libthetroposphere "libthetroposphere_weathericons"
+    PREFIX "/libthetroposphere/weathericons"
+    BASE "${CMAKE_CURRENT_SOURCE_DIR}/weathericons"
+    FILES "${WEATHER_ICON_FILES}"
+)
+
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(CMAKECONFIG_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/libthetroposphere.framework/Resources/CMake)
     set(HEADER_INSTALL_DIR ${CMAKE_INSTALL_PREFIX})

@@ -1,6 +1,9 @@
 #include "weathertimeseries.h"
 
 #include <QJsonObject>
+#include <QPainter>
+#include <QPixmap>
+#include <QSvgRenderer>
 
 struct WeatherTimeseriesPrivate {
         QDateTime time;
@@ -13,11 +16,101 @@ struct WeatherTimeseriesPrivate {
         bool is1HourDataAvailable = false;             // boolean
         double precipitation1Hour;                     // millimeters
         WeatherTimeseries::SymbolCode symbolCode1Hour; // symbol code
+
+        static QMap<QString, WeatherTimeseries::SymbolCode> symbolsMap;
+};
+
+QMap<QString, WeatherTimeseries::SymbolCode> WeatherTimeseriesPrivate::symbolsMap = {
+    {"clearsky_day",                              WeatherTimeseries::SymbolCode::ClearSkyDay                             },
+    {"clearsky_night",                            WeatherTimeseries::SymbolCode::ClearSkyNight                           },
+    {"clearsky_polartwilight",                    WeatherTimeseries::SymbolCode::ClearSkyPolarTwilight                   },
+    {"cloudy",                                    WeatherTimeseries::SymbolCode::Cloudy                                  },
+    {"fair_day",                                  WeatherTimeseries::SymbolCode::FairDay                                 },
+    {"fair_night",                                WeatherTimeseries::SymbolCode::FairNight                               },
+    {"fair_polartwilight",                        WeatherTimeseries::SymbolCode::FairPolarTwilight                       },
+    {"fog",                                       WeatherTimeseries::SymbolCode::Fog                                     },
+    {"heavyrain",                                 WeatherTimeseries::SymbolCode::HeavyRain                               },
+    {"heavyrainandthunder",                       WeatherTimeseries::SymbolCode::HeavyRainAndThunder                     },
+    {"heavyrainshowers_day",                      WeatherTimeseries::SymbolCode::HeavyRainShowersDay                     },
+    {"heavyrainshowers_night",                    WeatherTimeseries::SymbolCode::HeavyRainShowersNight                   },
+    {"heavyrainshowers_polartwilight",            WeatherTimeseries::SymbolCode::HeavyRainShowersPolarTwilight           },
+    {"heavyrainshowersandthunder_day",            WeatherTimeseries::SymbolCode::HeavyRainShowersAndThunderDay           },
+    {"heavyrainshowersandthunder_night",          WeatherTimeseries::SymbolCode::HeavyRainShowersAndThunderNight         },
+    {"heavyrainshowersandthunder_polartwilight",  WeatherTimeseries::SymbolCode::HeavyRainShowersAndThunderPolarTwilight },
+    {"heavysleet",                                WeatherTimeseries::SymbolCode::HeavySleet                              },
+    {"heavysleetandthunder",                      WeatherTimeseries::SymbolCode::HeavySleetAndThunder                    },
+    {"heavysleetshowers_day",                     WeatherTimeseries::SymbolCode::HeavySleetShowersDay                    },
+    {"heavysleetshowers_night",                   WeatherTimeseries::SymbolCode::HeavySleetShowersNight                  },
+    {"heavysleetshowers_polartwilight",           WeatherTimeseries::SymbolCode::HeavySleetShowersPolarTwilight          },
+    {"heavysleetshowersandthunder_day",           WeatherTimeseries::SymbolCode::HeavySleetShowersAndThunderDay          },
+    {"heavysleetshowersandthunder_night",         WeatherTimeseries::SymbolCode::HeavySleetShowersAndThunderNight        },
+    {"heavysleetshowersandthunder_polartwilight", WeatherTimeseries::SymbolCode::HeavySleetShowersAndThunderPolarTwilight},
+    {"heavysnow",                                 WeatherTimeseries::SymbolCode::HeavySnow                               },
+    {"heavysnowandthunder",                       WeatherTimeseries::SymbolCode::HeavySnowAndThunder                     },
+    {"heavysnowshowers_day",                      WeatherTimeseries::SymbolCode::HeavySnowShowersDay                     },
+    {"heavysnowshowers_night",                    WeatherTimeseries::SymbolCode::HeavySnowShowersNight                   },
+    {"heavysnowshowers_polartwilight",            WeatherTimeseries::SymbolCode::HeavyShowShowersPolarTwilight           },
+    {"heavysnowshowersandthunder_day",            WeatherTimeseries::SymbolCode::HeavySnowShowersAndThunderDay           },
+    {"heavysnowshowersandthunder_night",          WeatherTimeseries::SymbolCode::HeavySnowShowersAndThunderNight         },
+    {"heavysnowshowersandthunder_polartwilight",  WeatherTimeseries::SymbolCode::HeavySnowShowersAndThunderPolarTwilight },
+    {"lightrain",                                 WeatherTimeseries::SymbolCode::LightRain                               },
+    {"lightrainandthunder",                       WeatherTimeseries::SymbolCode::LightRainAndThunder                     },
+    {"lightrainshowers_day",                      WeatherTimeseries::SymbolCode::LightRainShowersDay                     },
+    {"lightrainshowers_night",                    WeatherTimeseries::SymbolCode::LightRainShowersNight                   },
+    {"lightrainshowers_polartwilight",            WeatherTimeseries::SymbolCode::LightRainShowersPolarTwilight           },
+    {"lightrainshowersandthunder_day",            WeatherTimeseries::SymbolCode::LightRainShowersAndThunderDay           },
+    {"lightrainshowersandthunder_night",          WeatherTimeseries::SymbolCode::LightRainShowersAndThunderNight         },
+    {"lightrainshowersandthunder_polartwilight",  WeatherTimeseries::SymbolCode::LightRainShowersAndThunderPolarTwilight },
+    {"lightsleet",                                WeatherTimeseries::SymbolCode::LightSleet                              },
+    {"lightsleetandthunder",                      WeatherTimeseries::SymbolCode::LightSleetAndThunder                    },
+    {"lightsleetshowers_day",                     WeatherTimeseries::SymbolCode::LightSleetShowersDay                    },
+    {"lightsleetshowers_night",                   WeatherTimeseries::SymbolCode::LightSleetShowersNight                  },
+    {"lightsleetshowers_polartwilight",           WeatherTimeseries::SymbolCode::LightSleetShowersPolarTwilight          },
+    {"lightsnow",                                 WeatherTimeseries::SymbolCode::LightSnow                               },
+    {"lightsnowandthunder",                       WeatherTimeseries::SymbolCode::LightSnowAndThunder                     },
+    {"lightsnowshowers_day",                      WeatherTimeseries::SymbolCode::LightSnowShowersDay                     },
+    {"lightsnowshowers_night",                    WeatherTimeseries::SymbolCode::LightSnowShowersNight                   },
+    {"lightsnowshowers_polartwilight",            WeatherTimeseries::SymbolCode::LightSnowShowersPolarTwilight           },
+    {"lightsleetshowersandthunder_day",           WeatherTimeseries::SymbolCode::LightSleetShowersAndThunderDay          },
+    {"lightsleetshowersandthunder_night",         WeatherTimeseries::SymbolCode::LightSleetShowersAndThunderNight        },
+    {"lightsleetshowersandthunder_polartwilight", WeatherTimeseries::SymbolCode::LightSleetShowersAndThunderPolarTwilight},
+    {"lightsnowshowersandthunder_day",            WeatherTimeseries::SymbolCode::LightSnowShowersndThunderDay            },
+    {"lightsnowshowersandthunder_night",          WeatherTimeseries::SymbolCode::LightSnowShowersAndThunderNight         },
+    {"lightsnowshowersandthunder_polartwilight",  WeatherTimeseries::SymbolCode::LightSnowShowersAndThunderPolarTwilight },
+    {"partlycloudy_day",                          WeatherTimeseries::SymbolCode::PartlyCloudyDay                         },
+    {"partlycloudy_night",                        WeatherTimeseries::SymbolCode::PartlyCloudyNight                       },
+    {"partlycloudy_polartwilight",                WeatherTimeseries::SymbolCode::PartlyCloudyPolarTwilight               },
+    {"rain",                                      WeatherTimeseries::SymbolCode::Rain                                    },
+    {"rainandthunder",                            WeatherTimeseries::SymbolCode::RainAndThunder                          },
+    {"rainshowers_day",                           WeatherTimeseries::SymbolCode::RainShowersDay                          },
+    {"rainshowers_night",                         WeatherTimeseries::SymbolCode::RainShowersNight                        },
+    {"rainshowers_polartwilight",                 WeatherTimeseries::SymbolCode::RainShowersPolarTwilight                },
+    {"rainshowersandthunder_day",                 WeatherTimeseries::SymbolCode::RainShowersAndThunderDay                },
+    {"rainshowersandthunder_night",               WeatherTimeseries::SymbolCode::RainShowersAndThunderNight              },
+    {"rainshowersandthunder_polartwilight",       WeatherTimeseries::SymbolCode::RainShowersAndThunderPolarTwilight      },
+    {"sleet",                                     WeatherTimeseries::SymbolCode::Sleet                                   },
+    {"sleetandthunder",                           WeatherTimeseries::SymbolCode::SleetAndThunder                         },
+    {"sleetshowers_day",                          WeatherTimeseries::SymbolCode::SleetShowersDay                         },
+    {"sleetshowers_night",                        WeatherTimeseries::SymbolCode::SleetShowersNight                       },
+    {"sleetshowers_polartwilight",                WeatherTimeseries::SymbolCode::SleetShowersPolarTwilight               },
+    {"sleetshowersandthunder_day",                WeatherTimeseries::SymbolCode::SleetShowersAndThunderDay               },
+    {"sleetshowersandthunder_night",              WeatherTimeseries::SymbolCode::SleetShowersAndThunderNight             },
+    {"sleetshowersandthunder_polartwilight",      WeatherTimeseries::SymbolCode::SleetShowersAndThunderPolarTwilight     },
+    {"snow",                                      WeatherTimeseries::SymbolCode::Snow                                    },
+    {"snowandthunder",                            WeatherTimeseries::SymbolCode::SnowAndThunder                          },
+    {"snowshowers_day",                           WeatherTimeseries::SymbolCode::SnowShowersDay                          },
+    {"snowshowers_night",                         WeatherTimeseries::SymbolCode::SnowShowersNight                        },
+    {"snowshowers_polartwilight",                 WeatherTimeseries::SymbolCode::SnowShowersPolarTwilight                },
+    {"snowshowersandthunder_day",                 WeatherTimeseries::SymbolCode::SnowShowersAndThunderDay                },
+    {"snowshowersandthunder_night",               WeatherTimeseries::SymbolCode::SnowShowersAndThunderNight              },
+    {"snowshowersandthunder_polartwilight",       WeatherTimeseries::SymbolCode::SnowShowersAndThunderPolarTwilight      },
 };
 
 WeatherTimeseries::WeatherTimeseries(QJsonObject timeseriesData, QObject* parent) :
     QObject{parent} {
     d = new WeatherTimeseriesPrivate();
+
+    Q_INIT_RESOURCE(libthetroposphere_weathericons);
 
     auto data = timeseriesData.value("data").toObject();
     auto instantData = data.value("instant").toObject().value("details").toObject();
@@ -41,92 +134,76 @@ WeatherTimeseries::~WeatherTimeseries() {
 }
 
 WeatherTimeseries::SymbolCode WeatherTimeseries::symbolCodeForString(QString string) {
-    static QMap<QString, SymbolCode> symbolsMap{
-        {"clearsky_day.svg",                              SymbolCode::ClearSkyDay                             },
-        {"clearsky_night.svg",                            SymbolCode::ClearSkyNight                           },
-        {"clearsky_polartwilight.svg",                    SymbolCode::ClearSkyPolarTwilight                   },
-        {"cloudy.svg",                                    SymbolCode::Cloudy                                  },
-        {"fair_day.svg",                                  SymbolCode::FairDay                                 },
-        {"fair_night.svg",                                SymbolCode::FairNight                               },
-        {"fair_polartwilight.svg",                        SymbolCode::FairPolarTwilight                       },
-        {"fog.svg",                                       SymbolCode::Fog                                     },
-        {"heavyrain.svg",                                 SymbolCode::HeavyRain                               },
-        {"heavyrainandthunder.svg",                       SymbolCode::HeavyRainAndThunder                     },
-        {"heavyrainshowers_day.svg",                      SymbolCode::HeavyRainShowersDay                     },
-        {"heavyrainshowers_night.svg",                    SymbolCode::HeavyRainShowersNight                   },
-        {"heavyrainshowers_polartwilight.svg",            SymbolCode::HeavyRainShowersPolarTwilight           },
-        {"heavyrainshowersandthunder_day.svg",            SymbolCode::HeavyRainShowersAndThunderDay           },
-        {"heavyrainshowersandthunder_night.svg",          SymbolCode::HeavyRainShowersAndThunderNight         },
-        {"heavyrainshowersandthunder_polartwilight.svg",  SymbolCode::HeavyRainShowersAndThunderPolarTwilight },
-        {"heavysleet.svg",                                SymbolCode::HeavySleet                              },
-        {"heavysleetandthunder.svg",                      SymbolCode::HeavySleetAndThunder                    },
-        {"heavysleetshowers_day.svg",                     SymbolCode::HeavySleetShowersDay                    },
-        {"heavysleetshowers_night.svg",                   SymbolCode::HeavySleetShowersNight                  },
-        {"heavysleetshowers_polartwilight.svg",           SymbolCode::HeavySleetShowersPolarTwilight          },
-        {"heavysleetshowersandthunder_day.svg",           SymbolCode::HeavySleetShowersAndThunderDay          },
-        {"heavysleetshowersandthunder_night.svg",         SymbolCode::HeavySleetShowersAndThunderNight        },
-        {"heavysleetshowersandthunder_polartwilight.svg", SymbolCode::HeavySleetShowersAndThunderPolarTwilight},
-        {"heavysnow.svg",                                 SymbolCode::HeavySnow                               },
-        {"heavysnowandthunder.svg",                       SymbolCode::HeavySnowAndThunder                     },
-        {"heavysnowshowers_day.svg",                      SymbolCode::HeavySnowShowersDay                     },
-        {"heavysnowshowers_night.svg",                    SymbolCode::HeavySnowShowersNight                   },
-        {"heavysnowshowers_polartwilight.svg",            SymbolCode::HeavyShowShowersPolarTwilight           },
-        {"heavysnowshowersandthunder_day.svg",            SymbolCode::HeavySnowShowersAndThunderDay           },
-        {"heavysnowshowersandthunder_night.svg",          SymbolCode::HeavySnowShowersAndThunderNight         },
-        {"heavysnowshowersandthunder_polartwilight.svg",  SymbolCode::HeavySnowShowersAndThunderPolarTwilight },
-        {"lightrain.svg",                                 SymbolCode::LightRain                               },
-        {"lightrainandthunder.svg",                       SymbolCode::LightRainAndThunder                     },
-        {"lightrainshowers_day.svg",                      SymbolCode::LightRainShowersDay                     },
-        {"lightrainshowers_night.svg",                    SymbolCode::LightRainShowersNight                   },
-        {"lightrainshowers_polartwilight.svg",            SymbolCode::LightRainShowersPolarTwilight           },
-        {"lightrainshowersandthunder_day.svg",            SymbolCode::LightRainShowersAndThunderDay           },
-        {"lightrainshowersandthunder_night.svg",          SymbolCode::LightRainShowersAndThunderNight         },
-        {"lightrainshowersandthunder_polartwilight.svg",  SymbolCode::LightRainShowersAndThunderPolarTwilight },
-        {"lightsleet.svg",                                SymbolCode::LightSleet                              },
-        {"lightsleetandthunder.svg",                      SymbolCode::LightSleetAndThunder                    },
-        {"lightsleetshowers_day.svg",                     SymbolCode::LightSleetShowersDay                    },
-        {"lightsleetshowers_night.svg",                   SymbolCode::LightSleetShowersNight                  },
-        {"lightsleetshowers_polartwilight.svg",           SymbolCode::LightSleetShowersPolarTwilight          },
-        {"lightsnow.svg",                                 SymbolCode::LightSnow                               },
-        {"lightsnowandthunder.svg",                       SymbolCode::LightSnowAndThunder                     },
-        {"lightsnowshowers_day.svg",                      SymbolCode::LightSnowShowersDay                     },
-        {"lightsnowshowers_night.svg",                    SymbolCode::LightSnowShowersNight                   },
-        {"lightsnowshowers_polartwilight.svg",            SymbolCode::LightSnowShowersPolarTwilight           },
-        {"lightsleetshowersandthunder_day.svg",           SymbolCode::LightSleetShowersAndThunderDay          },
-        {"lightsleetshowersandthunder_night.svg",         SymbolCode::LightSleetShowersAndThunderNight        },
-        {"lightsleetshowersandthunder_polartwilight.svg", SymbolCode::LightSleetShowersAndThunderPolarTwilight},
-        {"lightsnowshowersandthunder_day.svg",            SymbolCode::LightSnowShowersndThunderDay            },
-        {"lightsnowshowersandthunder_night.svg",          SymbolCode::LightSnowShowersAndThunderNight         },
-        {"lightsnowshowersandthunder_polartwilight.svg",  SymbolCode::LightSnowShowersAndThunderPolarTwilight },
-        {"partlycloudy_day.svg",                          SymbolCode::PartlyCloudyDay                         },
-        {"partlycloudy_night.svg",                        SymbolCode::PartlyCloudyNight                       },
-        {"partlycloudy_polartwilight.svg",                SymbolCode::PartlyCloudyPolarTwilight               },
-        {"rain.svg",                                      SymbolCode::Rain                                    },
-        {"rainandthunder.svg",                            SymbolCode::RainAndThunder                          },
-        {"rainshowers_day.svg",                           SymbolCode::RainShowersDay                          },
-        {"rainshowers_night.svg",                         SymbolCode::RainShowersNight                        },
-        {"rainshowers_polartwilight.svg",                 SymbolCode::RainShowersPolarTwilight                },
-        {"rainshowersandthunder_day.svg",                 SymbolCode::RainShowersAndThunderDay                },
-        {"rainshowersandthunder_night.svg",               SymbolCode::RainShowersAndThunderNight              },
-        {"rainshowersandthunder_polartwilight.svg",       SymbolCode::RainShowersAndThunderPolarTwilight      },
-        {"sleet.svg",                                     SymbolCode::Sleet                                   },
-        {"sleetandthunder.svg",                           SymbolCode::SleetAndThunder                         },
-        {"sleetshowers_day.svg",                          SymbolCode::SleetShowersDay                         },
-        {"sleetshowers_night.svg",                        SymbolCode::SleetShowersNight                       },
-        {"sleetshowers_polartwilight.svg",                SymbolCode::SleetShowersPolarTwilight               },
-        {"sleetshowersandthunder_day.svg",                SymbolCode::SleetShowersAndThunderDay               },
-        {"sleetshowersandthunder_night.svg",              SymbolCode::SleetShowersAndThunderNight             },
-        {"sleetshowersandthunder_polartwilight.svg",      SymbolCode::SleetShowersAndThunderPolarTwilight     },
-        {"snow.svg",                                      SymbolCode::Snow                                    },
-        {"snowandthunder.svg",                            SymbolCode::SnowAndThunder                          },
-        {"snowshowers_day.svg",                           SymbolCode::SnowShowersDay                          },
-        {"snowshowers_night.svg",                         SymbolCode::SnowShowersNight                        },
-        {"snowshowers_polartwilight.svg",                 SymbolCode::SnowShowersPolarTwilight                },
-        {"snowshowersandthunder_day.svg",                 SymbolCode::SnowShowersAndThunderDay                },
-        {"snowshowersandthunder_night.svg",               SymbolCode::SnowShowersAndThunderNight              },
-        {"snowshowersandthunder_polartwilight.svg",       SymbolCode::SnowShowersAndThunderPolarTwilight      },
-    };
-    return symbolsMap.value(string, SymbolCode::Unknown);
+    return d->symbolsMap.value(string, SymbolCode::Unknown);
+}
+
+WeatherTimeseries::BackgroundCode WeatherTimeseries::mapSymbolCodeToBackgroundCode(SymbolCode symbolCode) {
+    switch (symbolCode) {
+        // Clear or fair Day
+        case SymbolCode::ClearSkyDay:
+        case SymbolCode::FairDay:
+        case SymbolCode::PartlyCloudyDay:
+            return BackgroundCode::Day;
+
+            // Clear or fair Night
+        case SymbolCode::ClearSkyNight:
+        case SymbolCode::FairNight:
+        case SymbolCode::PartlyCloudyNight:
+            return BackgroundCode::Night;
+
+            // All raining conditions
+        case SymbolCode::HeavyRain:
+        case SymbolCode::HeavyRainShowersDay:
+        case SymbolCode::HeavyRainShowersNight:
+        case SymbolCode::LightRain:
+        case SymbolCode::LightRainShowersDay:
+        case SymbolCode::LightRainShowersNight:
+        case SymbolCode::Rain:
+        case SymbolCode::RainShowersDay:
+        case SymbolCode::RainShowersNight:
+            return BackgroundCode::Raining;
+
+            // All thundering conditions
+        case SymbolCode::HeavySleetAndThunder:
+        case SymbolCode::HeavyRainAndThunder:
+        case SymbolCode::LightSleetAndThunder:
+        case SymbolCode::LightRainAndThunder:
+        case SymbolCode::SleetAndThunder:
+        case SymbolCode::RainAndThunder:
+        case SymbolCode::LightSnowAndThunder:
+        case SymbolCode::SnowAndThunder:
+        case SymbolCode::HeavySnowAndThunder:
+            return BackgroundCode::Thundering;
+
+            // All snowing conditions
+        case SymbolCode::HeavySnow:
+        case SymbolCode::HeavySnowShowersDay:
+        case SymbolCode::HeavySnowShowersNight:
+        case SymbolCode::LightSnow:
+        case SymbolCode::LightSnowShowersDay:
+        case SymbolCode::LightSnowShowersNight:
+        case SymbolCode::Snow:
+        case SymbolCode::SnowShowersDay:
+        case SymbolCode::SnowShowersNight:
+            return BackgroundCode::Snowing;
+
+        default:
+            return BackgroundCode::Unknown;
+    }
+}
+
+QPixmap WeatherTimeseries::iconForSymbolCode(SymbolCode symbolCode, QSize size, qreal devicePixelRatio) {
+    auto filename = d->symbolsMap.key(symbolCode);
+    QPixmap px(size * devicePixelRatio);
+    px.fill(Qt::transparent);
+    px.setDevicePixelRatio(devicePixelRatio);
+
+    QPainter painter(&px);
+    QSvgRenderer renderer(QStringLiteral(":/libthetroposphere/weathericons/%1.svg").arg(filename));
+    renderer.render(&painter, QRectF(0, 0, size.width(), size.height()));
+    painter.end();
+
+    return px;
 }
 
 QDateTime WeatherTimeseries::time() {
@@ -151,4 +228,8 @@ bool WeatherTimeseries::is1HourDataAvailable() {
 
 double WeatherTimeseries::precipitation1Hour() {
     return d->precipitation1Hour;
+}
+
+WeatherTimeseries::SymbolCode WeatherTimeseries::symbolCode1Hour() {
+    return d->symbolCode1Hour;
 }
