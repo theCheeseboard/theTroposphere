@@ -79,7 +79,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="106"/>
+        <location filename="../mainwindow.cpp" line="111"/>
         <source>My Location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -124,31 +124,31 @@
     <name>WeatherPane</name>
     <message>
         <location filename="../weatherpane.ui" line="14"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="145"/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="140"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.ui" line="151"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="146"/>
+        <location filename="../weatherpane.ui" line="138"/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="141"/>
         <source>Open System Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.ui" line="158"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="147"/>
+        <location filename="../weatherpane.ui" line="145"/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="142"/>
         <source>Grant Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.cpp" line="48"/>
-        <location filename="../weatherpane.cpp" line="55"/>
+        <location filename="../weatherpane.cpp" line="57"/>
+        <location filename="../weatherpane.cpp" line="64"/>
         <source>Permissions Required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.cpp" line="49"/>
-        <location filename="../weatherpane.cpp" line="56"/>
+        <location filename="../weatherpane.cpp" line="58"/>
+        <location filename="../weatherpane.cpp" line="65"/>
         <source>theTroposphere needs to be able to access your location in order to show you the weather at your location.</source>
         <translation type="unfinished"></translation>
     </message>

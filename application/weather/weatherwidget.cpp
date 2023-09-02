@@ -2,6 +2,7 @@
 #include "ui_weatherwidget.h"
 
 #include "tropospherehelper.h"
+#include <QPainter>
 #include <weatherdata.h>
 #include <weathertimeseries.h>
 
@@ -14,6 +15,10 @@ WeatherWidget::WeatherWidget(QWidget* parent) :
     ui(new Ui::WeatherWidget) {
     ui->setupUi(this);
     d = new WeatherWidgetPrivate();
+
+    auto pal = this->palette();
+    pal.setColor(QPalette::WindowText, Qt::white);
+    this->setPalette(pal);
 }
 
 WeatherWidget::~WeatherWidget() {
@@ -35,8 +40,47 @@ QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
     } catch (tRangeException ex) {
         ui->mainTemperatureLabel->setText(QStringLiteral("--"));
     }
+
+    this->update();
 }
 
 void WeatherWidget::resizeEvent(QResizeEvent* event) {
     ui->containerWidget->setFixedWidth(qMin(900, this->width()));
+}
+
+void WeatherWidget::paintEvent(QPaintEvent* event) {
+    QPainter painter(this);
+    if (d->weatherData) {
+        auto currentWeather = d->weatherData->timeseries().first();
+        switch (currentWeather->mapSymbolCodeToBackgroundCode(currentWeather->symbolCode1Hour())) {
+            case WeatherTimeseries::BackgroundCode::Day:
+                {
+                    QLinearGradient gradient({0, 0}, {0, static_cast<qreal>(this->height())});
+                    gradient.setColorAt(0, QColor(0, 200, 200));
+                    gradient.setColorAt(1, QColor(0, 125, 200));
+                    painter.fillRect(QRect(0, 0, this->width(), this->height()), gradient);
+                    break;
+                }
+            case WeatherTimeseries::BackgroundCode::Night:
+                {
+                    QLinearGradient gradient({0, 0}, {0, static_cast<qreal>(this->height())});
+                    gradient.setColorAt(0, QColor(0, 0, 100));
+                    gradient.setColorAt(1, QColor(0, 0, 50));
+                    painter.fillRect(QRect(0, 0, this->width(), this->height()), gradient);
+                    break;
+                }
+            case WeatherTimeseries::BackgroundCode::Raining:
+            case WeatherTimeseries::BackgroundCode::Thundering:
+            case WeatherTimeseries::BackgroundCode::Snowing:
+                {
+                    QLinearGradient gradient({0, 0}, {0, static_cast<qreal>(this->height())});
+                    gradient.setColorAt(0, QColor(100, 100, 100));
+                    gradient.setColorAt(1, QColor(50, 50, 50));
+                    painter.fillRect(QRect(0, 0, this->width(), this->height()), gradient);
+                    break;
+                }
+            case WeatherTimeseries::BackgroundCode::Unknown:
+                break;
+        }
+    }
 }

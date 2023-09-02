@@ -81,7 +81,7 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
                                                              return timeseries->windSpeed();
                                                          })
                                         .toList(),
-            QColor(50, 0, 255));
+            QColor(150, 0, 255));
     });
 
     for (auto i = 0; i < d->timeseries.length() - 1; i++) {
@@ -197,11 +197,11 @@ void TemperatureTimeWidget::paintGraph(QPainter* painter, QRectF bounds, QList<d
                                     })
                           .toList();
 
-    auto oldY = bounds.top() + bounds.height() - bounds.height() * (normalised.first() * 0.6 + 0.2);
+    auto oldY = bounds.top() + bounds.height() - bounds.height() * (normalised.first() * 0.5 + 0.25);
     path.moveTo(this->layoutDirection() == Qt::LeftToRight ? bounds.left() : bounds.right(), oldY);
     for (auto i = 0; i < normalised.length(); i++) {
         auto x = this->layoutDirection() == Qt::LeftToRight ? (bounds.left() + d->paneWidth * i) : bounds.left() + (bounds.width() - d->paneWidth * i);
-        auto y = bounds.top() + bounds.height() - bounds.height() * (normalised.at(i) * 0.6 + 0.2);
+        auto y = bounds.top() + bounds.height() - bounds.height() * (normalised.at(i) * 0.5 + 0.25);
         auto adjustedX = x + (this->layoutDirection() == Qt::LeftToRight ? -d->paneWidth : d->paneWidth) / 2;
 
         path.cubicTo(QPointF(adjustedX, oldY), QPointF(adjustedX, y), QPointF(x, y));

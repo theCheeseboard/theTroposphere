@@ -26,6 +26,10 @@ class WeatherWidget : public QWidget {
         // QWidget interface
     protected:
         void resizeEvent(QResizeEvent *event);
+
+        // QWidget interface
+    protected:
+        void paintEvent(QPaintEvent *event);
 };
 
 #endif // WEATHERWIDGET_H

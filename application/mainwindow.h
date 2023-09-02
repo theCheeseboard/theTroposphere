@@ -38,6 +38,10 @@ class MainWindow : public QMainWindow {
         void newTab();
         void addTab(TroposphereLocation location);
         void saveLocations();
+
+        // QWidget interface
+    protected:
+        void resizeEvent(QResizeEvent *event);
 };
 
 #endif // MAINWINDOW_H

@@ -37,6 +37,10 @@ MainWindow::MainWindow(QWidget* parent) :
 
     this->resize(this->size());
 
+    ui->centralwidget->layout()->removeWidget(ui->topWidget);
+    ui->topWidget->raise();
+    ui->topWidget->move(0, 0);
+
     //    ui->windowTabber->addButton(new tWindowTabberButton(QIcon(), tr("Welcome"), ui->stackedWidget, ui->welcomePage));
     ui->windowTabber->setShowNewTabButton(true);
     connect(ui->windowTabber, &tWindowTabber::newTabRequested, this, &MainWindow::newTab);
@@ -99,6 +103,7 @@ void MainWindow::newTab() {
 
 void MainWindow::addTab(TroposphereLocation location) {
     auto weatherPane = new WeatherPane(location);
+    weatherPane->setTopPadding(ui->topWidget->sizeHint().height());
     d->weatherPanes.append(weatherPane);
     ui->stackedWidget->addWidget(weatherPane);
 
@@ -134,4 +139,13 @@ void MainWindow::on_stackedWidget_currentChanged(int arg1) {
 
 void MainWindow::on_actionAdd_City_triggered() {
     this->newTab();
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event) {
+    ui->topWidget->setFixedWidth(ui->centralwidget->width());
+    ui->topWidget->setFixedHeight(ui->topWidget->sizeHint().height());
+
+    for (auto pane : d->weatherPanes) {
+        pane->setTopPadding(ui->topWidget->sizeHint().height());
+    }
 }

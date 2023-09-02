@@ -12,6 +12,8 @@ struct WeatherPanePrivate {
         TroposphereLocation location;
         WeatherWidget* weatherWidget = nullptr;
         QGeoPositionInfoSource* geoSource;
+
+        int topPadding;
 };
 
 WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
@@ -30,6 +32,13 @@ WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
 WeatherPane::~WeatherPane() {
     delete ui;
     delete d;
+}
+
+void WeatherPane::setTopPadding(int topPadding) {
+    d->topPadding = topPadding;
+    if (d->weatherWidget) {
+        d->weatherWidget->setContentsMargins(0, d->topPadding, 0, 0);
+    }
 }
 
 TroposphereLocation WeatherPane::location() {
@@ -69,6 +78,7 @@ QCoro::Task<> WeatherPane::updateData() {
 
     if (!d->weatherWidget) {
         d->weatherWidget = new WeatherWidget(this);
+        d->weatherWidget->setContentsMargins(0, d->topPadding, 0, 0);
         ui->weatherWidgetLayout->addWidget(d->weatherWidget);
     }
 

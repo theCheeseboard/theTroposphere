@@ -16,6 +16,8 @@ class WeatherPane : public QWidget {
         explicit WeatherPane(TroposphereLocation location, QWidget* parent = nullptr);
         ~WeatherPane();
 
+        void setTopPadding(int topPadding);
+
         TroposphereLocation location();
 
     private slots:
