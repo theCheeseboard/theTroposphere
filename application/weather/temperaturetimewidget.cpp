@@ -146,7 +146,7 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
             painter->setPen(this->palette().color(QPalette::WindowText));
             painter->drawText(timeBounds, time);
 
-            auto icon = timeseries->iconForSymbolCode(timeseries->symbolCode1Hour(), iconBounds.size().toSize(), this->devicePixelRatio());
+            auto icon = timeseries->iconForWeatherFlag(timeseries->symbolCode1Hour(), iconBounds.size().toSize(), this->devicePixelRatio());
             painter->drawPixmap(iconBounds.toRect(), icon);
 
             painter->drawText(temperatureBounds, temperature);
