@@ -29,7 +29,9 @@ set_target_properties(libthetroposphere PROPERTIES
         FRAMEWORK TRUE
         MACOSX_FRAMEWORK_IDENTIFIER com.vicr123.thetroposphere
         VERSION 1.0.0
-        PUBLIC_HEADER "${HEADERS}")
+        PUBLIC_HEADER "${HEADERS}"
+        CNTP_DATA_SUBDIR thetroposphere/libthetroposphere)
+cntp_translate(libthetroposphere)
 
 target_link_libraries(libthetroposphere Qt::Widgets Qt::Network libcontemporary)
 target_compile_definitions(libthetroposphere PRIVATE LIBTHETROPOSPHERE_LIBRARY)

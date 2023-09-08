@@ -2,6 +2,12 @@
     "name": "theTroposphere",
     "subprojects": [
         {
+            "name": "theTroposphere Core",
+            "type": "qt",
+            "path": "/libthetroposphere/translations/{lang}.ts",
+            "baseLang": "en_US"
+        },
+        {
             "name": "theTroposphere Desktop",
             "type": "qt",
             "path": "/application/translations/{lang}.ts",
