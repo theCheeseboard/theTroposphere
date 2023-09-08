@@ -42,43 +42,43 @@
       <source>File</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>יציאה</translation>
       <location filename="../mainwindow.ui" line="131" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="156" />
       <source>Exit</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Ctrl+Q</translation>
       <location filename="../mainwindow.ui" line="134" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="158" />
       <source>Ctrl+Q</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>סגור כרטיסייה</translation>
       <location filename="../mainwindow.ui" line="143" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="160" />
       <source>Close Tab</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Ctrl+W</translation>
       <location filename="../mainwindow.ui" line="146" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="162" />
       <source>Ctrl+W</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>הוסף עיר</translation>
       <location filename="../mainwindow.ui" line="154" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="164" />
       <source>Add City</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>Ctrl+T</translation>
       <location filename="../mainwindow.ui" line="157" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="166" />
       <source>Ctrl+T</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>המיקום שלי</translation>
       <location filename="../mainwindow.cpp" line="111" />
       <source>My Location</source>
     </message>
@@ -91,7 +91,7 @@
       <source>Form</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>%1 מ"מ</translation>
       <location filename="../weather/temperaturetimewidget.cpp" line="124" />
       <source>%1 mm</source>
     </message>
@@ -99,22 +99,22 @@
   <context>
     <name>TroposphereHelper</name>
     <message>
-      <translation></translation>
+      <translation>%1 ℃</translation>
       <location filename="../tropospherehelper.cpp" line="23" />
       <source>%1 ℃</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>%1 קמ"ש</translation>
       <location filename="../tropospherehelper.cpp" line="31" />
       <source>%1 km/h</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>%1 מי"ש</translation>
       <location filename="../tropospherehelper.cpp" line="34" />
       <source>%1 mph</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>%1 ℉</translation>
       <location filename="../tropospherehelper.cpp" line="21" />
       <source>%1 ℉</source>
     </message>
@@ -128,25 +128,25 @@
       <source>Form</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>פתח הגדרות מערכת</translation>
       <location filename="../weatherpane.ui" line="138" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="141" />
       <source>Open System Settings</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>תן הרשאה</translation>
       <location filename="../weatherpane.ui" line="145" />
       <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="142" />
       <source>Grant Permission</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>נדרשות הרשאות</translation>
       <location filename="../weatherpane.cpp" line="57" />
       <location filename="../weatherpane.cpp" line="64" />
       <source>Permissions Required</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>theTroposphere צריך לדעת מהו מיקומך כדי להראות את מזג האוויר באזורך.</translation>
       <location filename="../weatherpane.cpp" line="58" />
       <location filename="../weatherpane.cpp" line="65" />
       <source>theTroposphere needs to be able to access your location in order to show you the weather at your location.</source>
@@ -160,7 +160,7 @@
       <source>Form</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>מזג אוויר לפי שעה</translation>
       <location filename="../weather/weatherwidget.ui" line="146" />
       <source>Hourly Weather</source>
     </message>
@@ -168,12 +168,12 @@
   <context>
     <name>main</name>
     <message>
-      <translation></translation>
+      <translation>מזג אוויר</translation>
       <location filename="../main.cpp" line="16" />
       <source>Weather</source>
     </message>
     <message>
-      <translation></translation>
+      <translation>נתוני מזג אוויר מ-MET Norway</translation>
       <location filename="../main.cpp" line="23" />
       <source>Weather data from MET Norway</source>
     </message>
