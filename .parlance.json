@@ -1,0 +1,29 @@
+{
+    "name": "theTroposphere",
+    "subprojects": [
+        {
+            "name": "theTroposphere Desktop",
+            "type": "qt",
+            "path": "/application/translations/{lang}.ts",
+            "baseLang": "en_US"
+        },
+        {
+            "name": "theTroposphere Apple Support",
+            "type": "apple-strings",
+            "path": "/application/translations/apple-lproj/{lang}.lproj/InfoPlist.strings",
+            "baseLang": "en_US"
+        },
+        {
+            "name": "theTroposphere Desktop File",
+            "type": "webext-json",
+            "path": "/application/translations/desktop/com.vicr123.thetroposphere/{lang}.json",
+            "baseLang": "en"
+        },
+        {
+            "name": "theTroposphere Blueprint Desktop File",
+            "type": "webext-json",
+            "path": "/application/translations/desktop/com.vicr123.thetroposphere_blueprint/{lang}.json",
+            "baseLang": "en"
+        },
+    ]
+}
