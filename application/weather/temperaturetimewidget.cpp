@@ -121,7 +121,7 @@ tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const
             }
             temperatureBounds.moveTop(temperatureBottom - metrics.height());
 
-            auto precipitation = tr("%1 mm").arg(timeseries->precipitation1Hour());
+            auto precipitation = TroposphereHelper::readablePrecipitation(timeseries->precipitation1Hour());
             QRectF precipitationBounds;
             precipitationBounds.setWidth(metrics.horizontalAdvance(precipitation) + 1);
             precipitationBounds.setHeight(metrics.height());

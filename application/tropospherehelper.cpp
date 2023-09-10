@@ -35,6 +35,16 @@ QString TroposphereHelper::readableSpeed(double metersPerSecond) {
     }
 }
 
+QString TroposphereHelper::readablePrecipitation(double millimeters) {
+    switch (QLocale().measurementSystem()) {
+        case QLocale::MetricSystem:
+            return tr("%1 mm").arg(millimeters, 0, 'f', 1);
+        case QLocale::ImperialUKSystem:
+        case QLocale::ImperialUSSystem:
+            return tr("%1 in").arg(millimeters / 25.4, 0, 'f', 1);
+    }
+}
+
 QDateTime TroposphereHelper::toLocalTime(QDateTime date, QTimeZone timezone) {
     QDateTime newDate(date);
     auto utcOffset = timezone.offsetFromUtc(date);

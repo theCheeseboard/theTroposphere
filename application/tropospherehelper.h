@@ -9,6 +9,7 @@ class TroposphereHelper {
     public:
         static QString readableTemperature(double temperature);
         static QString readableSpeed(double metersPerSecond);
+        static QString readablePrecipitation(double millimeters);
         static QDateTime toLocalTime(QDateTime date, QTimeZone timezone);
 };
 

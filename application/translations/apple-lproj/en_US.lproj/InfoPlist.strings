@@ -1,2 +1,2 @@
 CFBundleGetInfoString = "Weather";
-NSRemovableVolumesUsageDescription = "theTroposphere needs to be able to access your location in order to show you the weather at your location";
+NSLocationWhenInUseUsageDescription = "theTroposphere needs to be able to access your location in order to show you the weather at your location";

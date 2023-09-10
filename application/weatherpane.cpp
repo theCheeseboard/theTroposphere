@@ -63,8 +63,8 @@ QCoro::Task<> WeatherPane::updateData() {
                 ui->stackedWidget->setCurrentWidget(ui->errorPage);
                 ui->errorTitle->setText(tr("Permissions Required"));
                 ui->errorText->setText(tr("theTroposphere needs to be able to access your location in order to show you the weather at your location."));
-                ui->grantPermissionButton->setVisible(true);
-                ui->openSystemSettingsButton->setVisible(false);
+                ui->grantPermissionButton->setVisible(false);
+                ui->openSystemSettingsButton->setVisible(true);
                 co_return;
             case Qt::PermissionStatus::Granted:
                 break;

@@ -4,26 +4,27 @@
 <context>
     <name>AddLocationPopover</name>
     <message>
-        <location filename="../addlocationpopover.ui" line="14"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="146"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addlocationpopover.ui" line="35"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="147"/>
+        <location filename="../addlocationpopover.ui" line="+35"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+147"/>
         <source>Add Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addlocationpopover.ui" line="42"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="148"/>
+        <location line="+7"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
         <source>Where do you want to see the weather?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../addlocationpopover.ui" line="68"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="149"/>
+        <location line="+26"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -31,55 +32,60 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="155"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="116"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="169"/>
+        <location filename="../mainwindow.ui" line="+116"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+175"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="131"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="156"/>
+        <location line="+15"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-13"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="134"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="158"/>
+        <location line="+3"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="143"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="160"/>
+        <location line="+9"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="146"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="162"/>
+        <location line="+3"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="154"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="164"/>
+        <location line="+9"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Add City</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="157"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="166"/>
+        <location line="+3"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="111"/>
+        <location filename="../mainwindow.cpp" line="+111"/>
         <source>My Location</source>
         <translation type="unfinished"></translation>
     </message>
@@ -87,35 +93,39 @@
 <context>
     <name>TemperatureTimeWidget</name>
     <message>
-        <location filename="../weather/temperaturetimewidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../weather/temperaturetimewidget.cpp" line="124"/>
-        <source>%1 mm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TroposphereHelper</name>
     <message>
-        <location filename="../tropospherehelper.cpp" line="23"/>
+        <location filename="../tropospherehelper.cpp" line="+23"/>
         <source>%1 ℃</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tropospherehelper.cpp" line="31"/>
+        <location line="+8"/>
         <source>%1 km/h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tropospherehelper.cpp" line="34"/>
+        <location line="+3"/>
         <source>%1 mph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tropospherehelper.cpp" line="21"/>
+        <location line="+7"/>
+        <source>%1 mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1 in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-23"/>
         <source>%1 ℉</source>
         <translation type="unfinished"></translation>
     </message>
@@ -123,32 +133,32 @@
 <context>
     <name>WeatherPane</name>
     <message>
-        <location filename="../weatherpane.ui" line="14"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="140"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.ui" line="138"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="141"/>
+        <location filename="../weatherpane.ui" line="+138"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+141"/>
         <source>Open System Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.ui" line="145"/>
-        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="142"/>
+        <location line="+7"/>
+        <location/>
+        <location filename="../../../build-theTroposphere-Desktop_ARM-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+1"/>
         <source>Grant Permission</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.cpp" line="57"/>
-        <location filename="../weatherpane.cpp" line="64"/>
+        <location filename="../weatherpane.cpp" line="+57"/>
+        <location line="+7"/>
         <source>Permissions Required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weatherpane.cpp" line="58"/>
-        <location filename="../weatherpane.cpp" line="65"/>
+        <location line="-6"/>
+        <location line="+7"/>
         <source>theTroposphere needs to be able to access your location in order to show you the weather at your location.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -156,12 +166,12 @@
 <context>
     <name>WeatherWidget</name>
     <message>
-        <location filename="../weather/weatherwidget.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../weather/weatherwidget.ui" line="146"/>
+        <location filename="../weather/weatherwidget.ui" line="+146"/>
+        <location/>
         <source>Hourly Weather</source>
         <translation type="unfinished"></translation>
     </message>
@@ -169,12 +179,12 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.cpp" line="16"/>
+        <location filename="../main.cpp" line="+16"/>
         <source>Weather</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="23"/>
+        <location line="+7"/>
         <source>Weather data from MET Norway</source>
         <translation type="unfinished"></translation>
     </message>

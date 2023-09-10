@@ -20,7 +20,7 @@
         <string>NSApplication</string>
         <key>NSSupportsAutomaticGraphicsSwitching</key>
         <true/>
-        <key>NSLocationUsageDescription</key>
+        <key>NSLocationWhenInUseUsageDescription</key>
         <string>theTroposphere needs to be able to access your location in order to show you the weather at your location.</string>
 </dict>
 </plist>

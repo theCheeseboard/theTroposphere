@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string notr="true">MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">
@@ -108,7 +108,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>43</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -148,7 +148,8 @@
   </action>
   <action name="actionAdd_City">
    <property name="icon">
-    <iconset theme="tab-new"/>
+    <iconset theme="tab-new">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Add City</string>
