@@ -10,6 +10,7 @@
 #include <tjobmanager.h>
 #include <tpopover.h>
 #include <tsettings.h>
+#include <tsettingswindow/tsettingswindow.h>
 #include <twindowtabberbutton.h>
 
 struct MainWindowPrivate {
@@ -148,4 +149,8 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
     for (auto pane : d->weatherPanes) {
         pane->setTopPadding(ui->topWidget->sizeHint().height());
     }
+}
+
+void MainWindow::on_actionSettings_triggered() {
+    tSettingsWindow::openStaticSettingsWindow(this);
 }

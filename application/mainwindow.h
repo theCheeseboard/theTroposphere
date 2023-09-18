@@ -30,6 +30,8 @@ class MainWindow : public QMainWindow {
 
         void on_actionAdd_City_triggered();
 
+        void on_actionSettings_triggered();
+
     private:
         Ui::MainWindow* ui;
         MainWindowPrivate* d;
@@ -41,7 +43,7 @@ class MainWindow : public QMainWindow {
 
         // QWidget interface
     protected:
-        void resizeEvent(QResizeEvent *event);
+        void resizeEvent(QResizeEvent* event);
 };
 
 #endif // MAINWINDOW_H

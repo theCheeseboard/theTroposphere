@@ -118,6 +118,7 @@
     <addaction name="actionAdd_City"/>
     <addaction name="actionClose_Tab"/>
     <addaction name="separator"/>
+    <addaction name="actionSettings"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -156,6 +157,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
    </property>
   </action>
  </widget>

@@ -1,8 +1,10 @@
+#include "settings/temperatureunitsettingspane.h"
 #include <QCommandLineParser>
 #include <QJsonArray>
 #include <QUrl>
 #include <tapplication.h>
 #include <tsettings.h>
+#include <tsettingswindow/tsettingswindow.h>
 #include <tstylemanager.h>
 
 #include "mainwindow.h"
@@ -25,6 +27,11 @@ int main(int argc, char* argv[]) {
 #if defined(Q_OS_MAC)
     a.setQuitOnLastWindowClosed(false);
 #endif
+
+    tSettingsWindow::addStaticSection(0, "units", a.translate("main", "Units"));
+    tSettingsWindow::addStaticPane(10, "units", [] {
+        return new TemperatureUnitSettingsPane();
+    });
 
     tSettings settings;
     QObject::connect(&settings, &tSettings::settingChanged, [=](QString key, QVariant value) {

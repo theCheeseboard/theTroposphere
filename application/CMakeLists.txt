@@ -13,6 +13,8 @@ set(SOURCES
         weather/weatherwidget.cpp weather/weatherwidget.ui
         weather/temperaturetimewidget.cpp weather/temperaturetimewidget.ui
         tropospherehelper.cpp
+
+        settings/temperatureunitsettingspane.cpp settings/temperatureunitsettingspane.ui
 )
 
 set(HEADERS
@@ -22,6 +24,8 @@ set(HEADERS
         tropospherehelper.h
         weather/weatherwidget.h
         weather/temperaturetimewidget.h
+
+        settings/temperatureunitsettingspane.h
 )
 
 # Find Apple lproj files

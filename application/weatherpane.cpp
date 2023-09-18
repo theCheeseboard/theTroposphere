@@ -7,11 +7,14 @@
 #include "weather/weatherwidget.h"
 #include <QGeoPositionInfoSource>
 #include <QTimeZone>
+#include <tsettings.h>
 
 struct WeatherPanePrivate {
         TroposphereLocation location;
         WeatherWidget* weatherWidget = nullptr;
         QGeoPositionInfoSource* geoSource;
+
+        tSettings settings;
 
         int topPadding;
 };
@@ -25,6 +28,12 @@ WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
     d->geoSource = QGeoPositionInfoSource::createDefaultSource(this);
 
     d->geoSource->startUpdates();
+
+    connect(&d->settings, &tSettings::settingChanged, this, [this](QString key, QVariant value) {
+        if (key == "units/temperature") {
+            this->updateData();
+        }
+    });
 
     this->updateData();
 }
