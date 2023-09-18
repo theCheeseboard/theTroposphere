@@ -26,8 +26,7 @@ WeatherPane::WeatherPane(TroposphereLocation location, QWidget* parent) :
     d = new WeatherPanePrivate();
     d->location = location;
     d->geoSource = QGeoPositionInfoSource::createDefaultSource(this);
-
-    d->geoSource->startUpdates();
+    d->geoSource->setPreferredPositioningMethods(QGeoPositionInfoSource::NonSatellitePositioningMethods);
 
     connect(&d->settings, &tSettings::settingChanged, this, [this](QString key, QVariant value) {
         if (key == "units/temperature") {
@@ -81,6 +80,7 @@ QCoro::Task<> WeatherPane::updateData() {
 
 #endif
 
+        d->geoSource->startUpdates();
         auto position = d->geoSource->lastKnownPosition();
         d->location = co_await TroposphereLocation::reverseGeocode(position.coordinate().latitude(), position.coordinate().longitude());
     }

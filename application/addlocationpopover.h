@@ -1,40 +1,41 @@
 #ifndef ADDLOCATIONPOPOVER_H
 #define ADDLOCATIONPOPOVER_H
 
-#include <QWidget>
-#include <QCoroTask>
 #include "tropospherelocation.h"
+#include <QCoroTask>
+#include <QWidget>
 
 namespace Ui {
-class AddLocationPopover;
+    class AddLocationPopover;
 }
 
 class QListWidgetItem;
 struct AddLocationPopoverPrivate;
-class AddLocationPopover : public QWidget
-{
-    Q_OBJECT
+class AddLocationPopover : public QWidget {
+        Q_OBJECT
 
-public:
-    explicit AddLocationPopover(QWidget *parent = nullptr);
-    ~AddLocationPopover();
+    public:
+        explicit AddLocationPopover(QWidget* parent = nullptr);
+        ~AddLocationPopover();
 
-signals:
-    void done();
-    void locationSelected(TroposphereLocation location);
+    signals:
+        void done();
+        void locationSelected(TroposphereLocation location);
 
-private slots:
-    void on_titleLabel_backButtonClicked();
+    private slots:
+        void on_titleLabel_backButtonClicked();
 
-    void on_queryEdit_textChanged(const QString &arg1);
+        void on_queryEdit_textChanged(const QString& arg1);
 
-    void on_listWidget_itemActivated(QListWidgetItem *item);
+        void on_listWidget_itemActivated(QListWidgetItem* item);
 
-private:
-    Ui::AddLocationPopover *ui;
-    AddLocationPopoverPrivate* d;
+        void on_listWidget_itemClicked(QListWidgetItem* item);
 
-    QCoro::Task<> performSearch();
+    private:
+        Ui::AddLocationPopover* ui;
+        AddLocationPopoverPrivate* d;
+
+        QCoro::Task<> performSearch();
 };
 
 #endif // ADDLOCATIONPOPOVER_H

@@ -100,3 +100,7 @@ void AddLocationPopover::on_listWidget_itemActivated(QListWidgetItem* item) {
     emit locationSelected(item->data(Qt::UserRole).value<TroposphereLocation>());
     emit done();
 }
+
+void AddLocationPopover::on_listWidget_itemClicked(QListWidgetItem* item) {
+    on_listWidget_itemActivated(item);
+}

@@ -5,6 +5,7 @@
 #include "tropospherehelper.h"
 #include <QPainter>
 #include <QPainterPath>
+#include <QScroller>
 #include <QTimeZone>
 #include <QWheelEvent>
 #include <tpaintcalculator.h>
@@ -21,6 +22,8 @@ TemperatureTimeWidget::TemperatureTimeWidget(QWidget* parent) :
     ui(new Ui::TemperatureTimeWidget) {
     ui->setupUi(this);
     d = new TemperatureTimeWidgetPrivate();
+
+    QScroller::grabGesture(this, QScroller::LeftMouseButtonGesture);
 }
 
 TemperatureTimeWidget::~TemperatureTimeWidget() {
