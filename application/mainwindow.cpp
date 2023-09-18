@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget* parent) :
     menu->addAction(ui->actionAdd_City);
     menu->addAction(ui->actionClose_Tab);
     menu->addSeparator();
+    menu->addAction(ui->actionSettings);
     menu->addMenu(helpMenu);
     menu->addAction(ui->actionExit);
 
