@@ -5,6 +5,8 @@
 #include "tropospherehelper.h"
 #include <QPainter>
 #include <QPainterPath>
+#include <QScrollEvent>
+#include <QScrollPrepareEvent>
 #include <QScroller>
 #include <QTimeZone>
 #include <QWheelEvent>
@@ -15,6 +17,8 @@ struct TemperatureTimeWidgetPrivate {
         WeatherDataPtr weatherData;
         QList<WeatherTimeseries*> timeseries;
         QTimeZone timezone;
+
+        double overshoot = 0;
 };
 
 TemperatureTimeWidget::TemperatureTimeWidget(QWidget* parent) :
@@ -48,7 +52,7 @@ void TemperatureTimeWidget::setWeatherData(WeatherDataPtr weatherData, QString t
 
 tPaintCalculator TemperatureTimeWidget::paintCalculator(QPainter* painter) const {
     auto metrics = this->fontMetrics();
-    auto scroll = ui->horizontalScrollBar->value();
+    auto scroll = ui->horizontalScrollBar->value() + d->overshoot;
 
     tPaintCalculator paintCalculator;
     paintCalculator.setDrawBounds(this->size());
@@ -250,4 +254,22 @@ void TemperatureTimeWidget::on_horizontalScrollBar_valueChanged(int value) {
 
 QSize TemperatureTimeWidget::minimumSizeHint() const {
     return this->sizeHint();
+}
+
+bool TemperatureTimeWidget::event(QEvent* event) {
+    if (event->type() == QEvent::ScrollPrepare) {
+        auto e = static_cast<QScrollPrepareEvent*>(event);
+        e->setViewportSize(QSizeF(this->width(), this->height()));
+        e->setContentPos(QPointF(ui->horizontalScrollBar->value(), 0));
+        e->setContentPosRange(QRectF(QPointF(0, 0), QSizeF(ui->horizontalScrollBar->maximum(), this->height())));
+        e->accept();
+        return true;
+    } else if (event->type() == QEvent::Scroll) {
+        auto e = static_cast<QScrollEvent*>(event);
+        ui->horizontalScrollBar->setValue(e->contentPos().x());
+        d->overshoot = e->overshootDistance().x();
+        this->update();
+        return true;
+    }
+    return QWidget::event(event);
 }

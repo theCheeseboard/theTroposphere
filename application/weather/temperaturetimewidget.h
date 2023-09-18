@@ -37,6 +37,10 @@ class TemperatureTimeWidget : public QWidget {
 
     private slots:
         void on_horizontalScrollBar_valueChanged(int value);
+
+        // QObject interface
+    public:
+        bool event(QEvent *event);
 };
 
 #endif // TEMPERATURETIMEWIDGET_H
