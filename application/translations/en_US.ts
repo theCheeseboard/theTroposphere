@@ -97,12 +97,7 @@
 <context>
     <name>TemperatureUnitSettingsPane</name>
     <message>
-        <location filename="../settings/temperatureunitsettingspane.ui" line="+14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
+        <location filename="../settings/temperatureunitsettingspane.ui" line="+20"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
