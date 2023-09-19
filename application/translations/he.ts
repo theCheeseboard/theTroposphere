@@ -5,19 +5,19 @@
     <name>AddLocationPopover</name>
     <message>
         <location filename="../addlocationpopover.ui" line="+35"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+147"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+147"/>
         <source>Add Location</source>
         <translation>הוספת מקום</translation>
     </message>
     <message>
         <location line="+7"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
         <source>Where do you want to see the weather?</source>
         <translation>איפה ברצונך לדעת את מזג האוויר?</translation>
     </message>
     <message>
         <location line="+26"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1"/>
         <source>Search</source>
         <translation>חיפוש</translation>
     </message>
@@ -26,55 +26,55 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="+116"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+183"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+183"/>
         <source>File</source>
         <translation>קובץ</translation>
     </message>
     <message>
         <location line="+16"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-17"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-17"/>
         <source>Exit</source>
         <translation>יציאה</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location line="+9"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Close Tab</source>
         <translation>סגור כרטיסייה</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
         <location line="+9"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Add City</source>
         <translation>הוסף עיר</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
         <location line="+5"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
         <source>Ctrl+,</source>
         <translation type="unfinished"></translation>
     </message>
@@ -151,13 +151,13 @@
     <name>WeatherPane</name>
     <message>
         <location filename="../weatherpane.ui" line="+138"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+141"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+141"/>
         <source>Open System Settings</source>
         <translation>פתח הגדרות מערכת</translation>
     </message>
     <message>
         <location line="+7"/>
-        <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+1"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+1"/>
         <source>Grant Permission</source>
         <translation>תן הרשאה</translation>
     </message>
@@ -177,9 +177,24 @@
 <context>
     <name>WeatherWidget</name>
     <message>
-        <location filename="../weather/weatherwidget.ui" line="+146"/>
+        <location filename="../weather/weatherwidget.ui" line="+149"/>
         <source>Hourly Weather</source>
         <translation>מזג אוויר לפי שעה</translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>Hmm...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Looks like we had some trouble getting the weather</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Try Again</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

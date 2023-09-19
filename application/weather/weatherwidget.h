@@ -25,11 +25,13 @@ class WeatherWidget : public QWidget {
 
         // QWidget interface
     protected:
-        void resizeEvent(QResizeEvent *event);
+        void resizeEvent(QResizeEvent* event);
 
         // QWidget interface
     protected:
-        void paintEvent(QPaintEvent *event);
+        void paintEvent(QPaintEvent* event);
+    private slots:
+        void on_errorRetryButton_clicked();
 };
 
 #endif // WEATHERWIDGET_H

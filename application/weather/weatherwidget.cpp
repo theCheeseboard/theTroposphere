@@ -8,6 +8,7 @@
 
 struct WeatherWidgetPrivate {
         WeatherDataPtr weatherData;
+        TroposphereLocation loc;
 };
 
 WeatherWidget::WeatherWidget(QWidget* parent) :
@@ -19,6 +20,14 @@ WeatherWidget::WeatherWidget(QWidget* parent) :
     auto pal = this->palette();
     pal.setColor(QPalette::WindowText, Qt::white);
     this->setPalette(pal);
+
+    ui->spinner->setFixedSize({32, 32});
+    ui->stackedWidget->setCurrentWidget(ui->loadingPage);
+    ui->stackedWidget->setCurrentAnimation(tStackedWidget::Fade);
+
+    auto transparentPal = this->palette();
+    transparentPal.setColor(QPalette::Window, Qt::transparent);
+    ui->weatherPage->setPalette(transparentPal);
 }
 
 WeatherWidget::~WeatherWidget() {
@@ -27,10 +36,16 @@ WeatherWidget::~WeatherWidget() {
 }
 
 QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
+    d->loc = loc;
+    ui->stackedWidget->setCurrentWidget(ui->loadingPage);
     ui->administrativeAreaLabel->setText(QStringLiteral("%1, %2").arg(loc.admin1, loc.country));
     ui->cityNameLabel->setText(loc.name);
 
     d->weatherData = co_await WeatherData::getWeatherData(loc.lat, loc.lng);
+    if (!d->weatherData) {
+        ui->stackedWidget->setCurrentWidget(ui->errorPage);
+        co_return;
+    }
 
     try {
         auto currentWeather = d->weatherData->timeseries().first();
@@ -41,6 +56,7 @@ QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
         ui->mainTemperatureLabel->setText(QStringLiteral("--"));
     }
 
+    ui->stackedWidget->setCurrentWidget(ui->weatherPage);
     this->update();
 }
 
@@ -70,4 +86,8 @@ void WeatherWidget::paintEvent(QPaintEvent* event) {
             painter.fillRect(QRect(0, 0, this->width(), this->height()), gradient);
         }
     }
+}
+
+void WeatherWidget::on_errorRetryButton_clicked() {
+    this->setLocation(d->loc);
 }
