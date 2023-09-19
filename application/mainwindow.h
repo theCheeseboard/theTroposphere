@@ -17,6 +17,8 @@ class MainWindow : public QMainWindow {
         explicit MainWindow(QWidget* parent = nullptr);
         ~MainWindow();
 
+        QCoro::Task<> completeApplicationInit();
+
         void openRepo(QString path);
 
         RepositoryBrowser* openNextTab();
@@ -31,6 +33,8 @@ class MainWindow : public QMainWindow {
         void on_actionAdd_City_triggered();
 
         void on_actionSettings_triggered();
+
+        void on_actionReview_Privacy_Statement_triggered();
 
     private:
         Ui::MainWindow* ui;

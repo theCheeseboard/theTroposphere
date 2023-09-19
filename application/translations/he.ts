@@ -26,19 +26,19 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="+14"/>
-        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+165"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+169"/>
         <source>theTroposphere</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+102"/>
-        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+18"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+19"/>
         <source>File</source>
         <translation>קובץ</translation>
     </message>
     <message>
-        <location line="+16"/>
-        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-17"/>
+        <location line="+17"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-18"/>
         <source>Exit</source>
         <translation>יציאה</translation>
     </message>
@@ -85,9 +85,60 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="+113"/>
+        <location line="+5"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2"/>
+        <source>Review Privacy Statement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="+124"/>
         <source>My Location</source>
         <translation>המיקום שלי</translation>
+    </message>
+</context>
+<context>
+    <name>PrivacyStatement</name>
+    <message>
+        <location filename="../privacystatement.ui" line="+14"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_privacystatement.h" line="+103"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_privacystatement.h" line="+1"/>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_privacystatement.h" line="+1"/>
+        <source>Understood</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_privacystatement.h" line="+1"/>
+        <source>Quit theTroposphere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../privacystatement.cpp" line="+21"/>
+        <source>
+Welcome to theTroposphere. In order for theTroposphere to work correctly, data must be sent to servers hosted by Victor Tran and the Norwegian Meteorological Institute.
+
+Data sent to Victor Tran includes:
+- Data regarding your current location (if accepted) in order to figure out what city you are currently in
+
+Data sent to Victor Tran will be handled in accordance with the [Privacy Policy for Victor Tran services](%1).
+
+Data sent to the Norwegian Meteorological Institute includes:
+- Coordinates of cities that you want to get the weather for
+- Your current location (if accepted) in order to get the weather for your current location
+
+Data sent to the Norwegian Meteorological Institute will be handled in accordance with the [Privacy Policy for the Norwegian Meteorological Institute](%2).
+    </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

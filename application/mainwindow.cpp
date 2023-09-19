@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "addlocationpopover.h"
+#include "privacystatement.h"
 #include "weatherpane.h"
 #include <ranges/trange.h>
 #include <tapplication.h>
@@ -59,6 +60,7 @@ MainWindow::MainWindow(QWidget* parent) :
     menu->addAction(ui->actionClose_Tab);
     menu->addSeparator();
     menu->addAction(ui->actionSettings);
+    menu->addAction(ui->actionReview_Privacy_Statement);
     menu->addMenu(helpMenu);
     menu->addAction(ui->actionExit);
 
@@ -70,6 +72,19 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->stackedWidget->setCurrentAnimation(tStackedWidget::SlideHorizontal);
     this->setWindowIcon(tApplication::applicationIcon());
 
+    this->completeApplicationInit();
+}
+
+MainWindow::~MainWindow() {
+    delete ui;
+}
+
+QCoro::Task<> MainWindow::completeApplicationInit() {
+    if (!d->settings.value("privacy/accepted").toBool()) {
+        co_await PrivacyStatement::showPrivacyStatement(ui->centralwidget);
+        d->settings.setValue("privacy/accepted", true);
+    }
+
     addTab({});
 
     for (auto location : d->settings.delimitedList("locations/locations")) {
@@ -78,10 +93,6 @@ MainWindow::MainWindow(QWidget* parent) :
         TroposphereLocation loc(location);
         this->addTab(loc);
     }
-}
-
-MainWindow::~MainWindow() {
-    delete ui;
 }
 
 void MainWindow::on_actionExit_triggered() {
@@ -154,4 +165,8 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 
 void MainWindow::on_actionSettings_triggered() {
     tSettingsWindow::openStaticSettingsWindow(this);
+}
+
+void MainWindow::on_actionReview_Privacy_Statement_triggered() {
+    PrivacyStatement::showPrivacyStatement(ui->centralwidget);
 }

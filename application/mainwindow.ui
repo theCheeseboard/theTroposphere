@@ -119,6 +119,7 @@
     <addaction name="actionClose_Tab"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
+    <addaction name="actionReview_Privacy_Statement"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -165,6 +166,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+,</string>
+   </property>
+  </action>
+  <action name="actionReview_Privacy_Statement">
+   <property name="text">
+    <string>Review Privacy Statement</string>
    </property>
   </action>
  </widget>

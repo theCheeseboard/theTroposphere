@@ -42,7 +42,8 @@ FOREACH(DIR ${LPROJ_DIRS})
 ENDFOREACH()
 set(SOURCES ${SOURCES} ${LPROJ_SOURCES})
 
-add_executable(thetroposphere ${SOURCES} ${HEADERS})
+add_executable(thetroposphere ${SOURCES} ${HEADERS}
+    privacystatement.h privacystatement.cpp privacystatement.ui)
 
 set_target_properties(thetroposphere PROPERTIES
         MACOSX_BUNDLE TRUE
