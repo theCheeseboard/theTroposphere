@@ -1,172 +1,248 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
 <TS version="2.1" language="vi">
-  <context>
+<context>
     <name>AddLocationPopover</name>
     <message>
-      <translation>Thêm địa điểm</translation>
-      <location filename="../addlocationpopover.ui" line="+35" />
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+147" />
-      <source>Add Location</source>
+        <location filename="../addlocationpopover.ui" line="+35"/>
+        <source>Add Location</source>
+        <translation>Thêm địa điểm</translation>
     </message>
     <message>
-      <translation>Bạn muốn xem thời tiết ở đâu?</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1" />
-      <source>Where do you want to see the weather?</source>
+        <location line="+7"/>
+        <source>Where do you want to see the weather?</source>
+        <translation>Bạn muốn xem thời tiết ở đâu?</translation>
     </message>
     <message>
-      <translation>Tìm kiếm</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_addlocationpopover.h" line="+1" />
-      <source>Search</source>
+        <location line="+26"/>
+        <source>Search</source>
+        <translation>Tìm kiếm</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-      <translation>Tệp</translation>
-      <location filename="../mainwindow.ui" line="+116" />
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+183" />
-      <source>File</source>
+        <location filename="../mainwindow.ui" line="+14"/>
+        <source>theTroposphere</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-      <translation>Thoát</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="-17" />
-      <source>Exit</source>
+        <location line="+102"/>
+        <source>File</source>
+        <translation>Tệp</translation>
     </message>
     <message>
-      <translation>Ctrl+Q</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Ctrl+Q</source>
+        <location line="+17"/>
+        <source>Exit</source>
+        <translation>Thoát</translation>
     </message>
     <message>
-      <translation>Đóng tab</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Close Tab</source>
+        <location line="+3"/>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
-      <translation>Ctrl+W</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Ctrl+W</source>
+        <location line="+9"/>
+        <source>Close Tab</source>
+        <translation>Đóng tab</translation>
     </message>
     <message>
-      <translation>Thêm thành phố</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Add City</source>
+        <location line="+3"/>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
-      <translation>Ctrl+T</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Ctrl+T</source>
+        <location line="+9"/>
+        <source>Add City</source>
+        <translation>Thêm thành phố</translation>
     </message>
     <message>
-      <translation>Cài đặt</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Settings</source>
+        <location line="+3"/>
+        <source>Ctrl+T</source>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
-      <translation>Ctrl+,</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+2" />
-      <source>Ctrl+,</source>
+        <location line="+5"/>
+        <source>Settings</source>
+        <translation>Cài đặt</translation>
     </message>
     <message>
-      <translation>Địa điểm của tôi</translation>
-      <location filename="../mainwindow.cpp" line="+113" />
-      <source>My Location</source>
+        <location line="+3"/>
+        <source>Ctrl+,</source>
+        <translation>Ctrl+,</translation>
     </message>
-  </context>
-  <context>
+    <message>
+        <location line="+5"/>
+        <source>Review Privacy Statement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="+124"/>
+        <source>My Location</source>
+        <translation>Địa điểm của tôi</translation>
+    </message>
+</context>
+<context>
+    <name>PrivacyStatement</name>
+    <message>
+        <location filename="../privacystatement.ui" line="+14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>Privacy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>Understood</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Quit theTroposphere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../privacystatement.cpp" line="+21"/>
+        <source>
+Welcome to theTroposphere. In order for theTroposphere to work correctly, data must be sent to servers hosted by Victor Tran and the Norwegian Meteorological Institute.
+
+Data sent to Victor Tran includes:
+- Data regarding your current location (if accepted) in order to figure out what city you are currently in
+
+Data sent to Victor Tran will be handled in accordance with the [Privacy Policy for Victor Tran services](%1).
+
+Data sent to the Norwegian Meteorological Institute includes:
+- Coordinates of cities that you want to get the weather for
+- Your current location (if accepted) in order to get the weather for your current location
+
+Data sent to the Norwegian Meteorological Institute will be handled in accordance with the [Privacy Policy for the Norwegian Meteorological Institute](%2).
+    </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemperatureUnitSettingsPane</name>
     <message>
-      <translation>Tự động</translation>
-      <location filename="../settings/temperatureunitsettingspane.ui" line="+20" />
-      <source>Auto</source>
+        <location filename="../settings/temperatureunitsettingspane.ui" line="+20"/>
+        <source>Auto</source>
+        <translation>Tự động</translation>
     </message>
     <message>
-      <translation>Độ C</translation>
-      <source>Celsius</source>
+        <location line="+7"/>
+        <source>Celsius</source>
+        <translation>Độ C</translation>
     </message>
     <message>
-      <translation>Độ F</translation>
-      <source>Fahrenheit</source>
+        <location line="+7"/>
+        <source>Fahrenheit</source>
+        <translation>Độ F</translation>
     </message>
     <message>
-      <translation>Nhiệt độ</translation>
-      <location filename="../settings/temperatureunitsettingspane.cpp" line="+32" />
-      <source>Temperature</source>
+        <location filename="../settings/temperatureunitsettingspane.cpp" line="+32"/>
+        <source>Temperature</source>
+        <translation>Nhiệt độ</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>TroposphereHelper</name>
     <message>
-      <translation>%1 ℃</translation>
-      <location filename="../tropospherehelper.cpp" line="+23" />
-      <source>%1 ℃</source>
+        <location filename="../tropospherehelper.cpp" line="+23"/>
+        <source>%1 ℃</source>
+        <translation>%1 ℃</translation>
     </message>
     <message>
-      <translation>%1 km/h</translation>
-      <source>%1 km/h</source>
+        <location line="+12"/>
+        <source>%1 km/h</source>
+        <translation>%1 km/h</translation>
     </message>
     <message>
-      <translation>%1 mph</translation>
-      <source>%1 mph</source>
+        <location line="-3"/>
+        <source>%1 mph</source>
+        <translation>%1 mph</translation>
     </message>
     <message>
-      <translation>%1 mm</translation>
-      <source>%1 mm</source>
+        <location line="+14"/>
+        <source>%1 mm</source>
+        <translation>%1 mm</translation>
     </message>
     <message>
-      <translation>%1 in</translation>
-      <source>%1 in</source>
+        <location line="-3"/>
+        <source>%1 in</source>
+        <translation>%1 in</translation>
     </message>
     <message>
-      <translation>%1 ℉</translation>
-      <source>%1 ℉</source>
+        <location line="-22"/>
+        <source>%1 ℉</source>
+        <translation>%1 ℉</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>WeatherPane</name>
     <message>
-      <translation>Mở cài đặt hệ thống</translation>
-      <location filename="../weatherpane.ui" line="+138" />
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+141" />
-      <source>Open System Settings</source>
+        <location filename="../weatherpane.ui" line="+138"/>
+        <source>Open System Settings</source>
+        <translation>Mở cài đặt hệ thống</translation>
     </message>
     <message>
-      <translation>Cấp quyền</translation>
-      <location filename="../../../build-theTroposphere-Android_Qt_6_5_2_aarch64_Clang_arm64_v8a-Debug/application/thetroposphere_autogen/include/ui_weatherpane.h" line="+1" />
-      <source>Grant Permission</source>
+        <location line="+7"/>
+        <source>Grant Permission</source>
+        <translation>Cấp quyền</translation>
     </message>
     <message>
-      <translation>Cần quyền</translation>
-      <location filename="../weatherpane.cpp" line="+65" />
-      <source>Permissions Required</source>
+        <location filename="../weatherpane.cpp" line="+65"/>
+        <location line="+7"/>
+        <source>Permissions Required</source>
+        <translation>Cần quyền</translation>
     </message>
     <message>
-      <translation>theTroposphere cần quyền truy cập địa điểm của bạn để hiển thị thông tin thời tiết tại địa điểm của bạn.</translation>
-      <source>theTroposphere needs to be able to access your location in order to show you the weather at your location.</source>
+        <location line="-6"/>
+        <location line="+7"/>
+        <source>theTroposphere needs to be able to access your location in order to show you the weather at your location.</source>
+        <translation>theTroposphere cần quyền truy cập địa điểm của bạn để hiển thị thông tin thời tiết tại địa điểm của bạn.</translation>
     </message>
-  </context>
-  <context>
+</context>
+<context>
     <name>WeatherWidget</name>
     <message>
-      <translation>Thời tiết hàng giờ</translation>
-      <location filename="../weather/weatherwidget.ui" line="+146" />
-      <source>Hourly Weather</source>
+        <location filename="../weather/weatherwidget.ui" line="+149"/>
+        <source>Hourly Weather</source>
+        <translation>Thời tiết hàng giờ</translation>
     </message>
-  </context>
-  <context>
+    <message>
+        <location line="+48"/>
+        <source>Hmm...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Looks like we had some trouble getting the weather</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Try Again</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main</name>
     <message>
-      <translation>Thời tiết</translation>
-      <location filename="../main.cpp" line="+18" />
-      <source>Weather</source>
+        <location filename="../main.cpp" line="+18"/>
+        <source>Weather</source>
+        <translation>Thời tiết</translation>
     </message>
     <message>
-      <translation>Dữ liệu thời tiết từ MET Na Uy</translation>
-      <source>Weather data from MET Norway</source>
+        <location line="+9"/>
+        <source>Weather data from MET Norway</source>
+        <translation>Dữ liệu thời tiết từ MET Na Uy</translation>
     </message>
     <message>
-      <translation>Đơn vị</translation>
-      <source>Units</source>
+        <location line="+6"/>
+        <source>Units</source>
+        <translation>Đơn vị</translation>
     </message>
-  </context>
+</context>
 </TS>

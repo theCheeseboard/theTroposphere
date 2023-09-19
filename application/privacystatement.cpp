@@ -81,8 +81,10 @@ void PrivacyStatement::on_okButton_clicked() {
 }
 
 void PrivacyStatement::on_noButton_clicked() {
-    tSettings settings;
-    settings.setValue("privacy/accepted", true);
-    settings.sync();
+    {
+        tSettings settings;
+        settings.setValue("privacy/accepted", true);
+        settings.sync();
+    }
     tApplication::exit();
 }

@@ -5,7 +5,10 @@ project(thetroposphere VERSION 1.0.0 LANGUAGES CXX)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Positioning Network)
 find_package(libcontemporary REQUIRED)
 
-set(SOURCES
+cntp_sourcelist(
+    OUTPUT SOURCES
+    OUTPUT_ALL ALL_SOURCES
+    FILES
         main.cpp
         mainwindow.cpp mainwindow.ui
         weatherpane.cpp weatherpane.ui
@@ -13,17 +16,22 @@ set(SOURCES
         weather/weatherwidget.cpp weather/weatherwidget.ui
         weather/temperaturetimewidget.cpp weather/temperaturetimewidget.ui
         tropospherehelper.cpp
+        privacystatement.cpp privacystatement.ui
 
         settings/temperatureunitsettingspane.cpp settings/temperatureunitsettingspane.ui
 )
 
-set(HEADERS
+cntp_sourcelist(
+    OUTPUT HEADERS
+    OUTPUT_ALL ALL_HEADERS
+    FILES
         mainwindow.h
         weatherpane.h
         addlocationpopover.h
         tropospherehelper.h
         weather/weatherwidget.h
         weather/temperaturetimewidget.h
+        privacystatement.h
 
         settings/temperatureunitsettingspane.h
 )
@@ -42,15 +50,16 @@ FOREACH(DIR ${LPROJ_DIRS})
 ENDFOREACH()
 set(SOURCES ${SOURCES} ${LPROJ_SOURCES})
 
-add_executable(thetroposphere ${SOURCES} ${HEADERS}
-    privacystatement.h privacystatement.cpp privacystatement.ui)
+add_executable(thetroposphere ${SOURCES} ${HEADERS})
 
 set_target_properties(thetroposphere PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
         MACOSX_BUNDLE_GUI_IDENTIFIER com.vicr123.thetroposphere
         WIN32_EXECUTABLE TRUE
-        CNTP_DATA_SUBDIR thetroposphere)
+        CNTP_DATA_SUBDIR thetroposphere
+        TRANSLATION_SOURCES "${ALL_SOURCES};${ALL_HEADERS}"
+    )
 
 cntp_init(thetroposphere 20)
 cntp_translate(thetroposphere)
