@@ -85,12 +85,7 @@
 <context>
     <name>PrivacyStatement</name>
     <message>
-        <location filename="../privacystatement.ui" line="+14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location line="+45"/>
+        <location filename="../privacystatement.ui" line="+59"/>
         <source>Privacy</source>
         <translation></translation>
     </message>
