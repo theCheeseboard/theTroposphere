@@ -42,14 +42,16 @@ FOREACH(DIR ${LPROJ_DIRS})
 ENDFOREACH()
 set(SOURCES ${SOURCES} ${LPROJ_SOURCES})
 
-add_executable(thetroposphere ${SOURCES} ${HEADERS})
+qt_add_executable(thetroposphere MANUAL_FINALIZATION ${SOURCES} ${HEADERS})
 
 set_target_properties(thetroposphere PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in
         MACOSX_BUNDLE_GUI_IDENTIFIER com.vicr123.thetroposphere
         WIN32_EXECUTABLE TRUE
-        CNTP_DATA_SUBDIR thetroposphere)
+        CNTP_DATA_SUBDIR thetroposphere
+        QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+        QT_ANDROID_EXTRA_PLUGINS /home/victor/Android/install/plugins/styles)
 
 cntp_init(thetroposphere 20)
 cntp_translate(thetroposphere)
@@ -63,9 +65,15 @@ cntp_target_desktop_file(thetroposphere
 cntp_defaults_file(thetroposphere
     DEFAULTS_FILE thetroposphere.conf)
 
-target_link_libraries(thetroposphere Qt::Widgets Qt::Positioning Qt::Network libcontemporary libthetroposphere)
+include(/home/victor/Android/openssl/android_openssl.cmake)
+add_android_openssl_libraries(thetroposphere)
+
+target_link_libraries(thetroposphere PUBLIC Qt::Widgets Qt::Positioning Qt::Network libcontemporary libthetroposphere)
 target_include_directories(thetroposphere PUBLIC ../libthetroposphere/)
 
 install(TARGETS thetroposphere
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         BUNDLE DESTINATION /Applications)
+
+qt_finalize_target(thetroposphere)
