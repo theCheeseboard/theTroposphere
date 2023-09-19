@@ -211,7 +211,7 @@
         <translation>מזג אוויר</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Weather data from MET Norway</source>
         <translation>נתוני מזג אוויר מ-MET Norway</translation>
     </message>

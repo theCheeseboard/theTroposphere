@@ -204,7 +204,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Weather data from MET Norway</source>
         <translation type="unfinished"></translation>
     </message>

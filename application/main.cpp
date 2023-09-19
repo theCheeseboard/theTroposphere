@@ -20,6 +20,8 @@ int main(int argc, char* argv[]) {
     a.setCopyrightHolder("Victor Tran");
     a.setCopyrightYear("2023");
     a.setOrganizationName("theCheeseboard");
+    a.setApplicationUrl(tApplication::Sources, QUrl("http://github.com/theCheeseboard/theTroposphere"));
+    a.setApplicationUrl(tApplication::FileBug, QUrl("http://github.com/theCheeseboard/theTroposphere/issues"));
     a.setApplicationName(T_APPMETA_READABLE_NAME);
     a.setDesktopFileName(T_APPMETA_DESKTOP_ID);
     a.addCopyrightLine(tApplication::translate("main", "Weather data from MET Norway"));
