@@ -2,6 +2,7 @@
 #include "ui_weatherwidget.h"
 
 #include "tropospherehelper.h"
+#include <QDateTime>
 #include <QPainter>
 #include <weatherdata.h>
 #include <weathertimeseries.h>
@@ -9,6 +10,8 @@
 struct WeatherWidgetPrivate {
         WeatherDataPtr weatherData;
         TroposphereLocation loc;
+
+        QTimer* refreshTimer;
 };
 
 WeatherWidget::WeatherWidget(QWidget* parent) :
@@ -28,6 +31,12 @@ WeatherWidget::WeatherWidget(QWidget* parent) :
     auto transparentPal = this->palette();
     transparentPal.setColor(QPalette::Window, Qt::transparent);
     ui->weatherPage->setPalette(transparentPal);
+
+    d->refreshTimer = new QTimer(this);
+    connect(d->refreshTimer, &QTimer::timeout, this, [this] {
+        this->setLocation(d->loc);
+    });
+    d->refreshTimer->setSingleShot(true);
 }
 
 WeatherWidget::~WeatherWidget() {
@@ -36,6 +45,7 @@ WeatherWidget::~WeatherWidget() {
 }
 
 QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
+    d->refreshTimer->stop();
     d->loc = loc;
     ui->stackedWidget->setCurrentWidget(ui->loadingPage);
     ui->administrativeAreaLabel->setText(QStringLiteral("%1, %2").arg(loc.admin1, loc.country));
@@ -58,6 +68,9 @@ QCoro::Task<> WeatherWidget::setLocation(TroposphereLocation loc) {
 
     ui->stackedWidget->setCurrentWidget(ui->weatherPage);
     this->update();
+
+    d->refreshTimer->setInterval((3600 - (QDateTime::currentDateTime().time().minute() * 60 + QDateTime::currentDateTimeUtc().time().second())) * 1000);
+    d->refreshTimer->start();
 }
 
 void WeatherWidget::resizeEvent(QResizeEvent* event) {

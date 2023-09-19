@@ -25,8 +25,14 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="+116"/>
-        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+183"/>
+        <location filename="../mainwindow.ui" line="+14"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+165"/>
+        <source>theTroposphere</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+102"/>
+        <location filename="../../../build-theTroposphere-Chroot_6-Debug/application/thetroposphere_autogen/include/ui_mainwindow.h" line="+18"/>
         <source>File</source>
         <translation>קובץ</translation>
     </message>
