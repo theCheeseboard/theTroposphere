@@ -13,6 +13,8 @@ struct AddLocationPopoverPrivate {
         QNetworkAccessManager mgr;
         QTimer* timer;
         quint64 nonce = 0;
+
+        bool done = false;
 };
 
 AddLocationPopover::AddLocationPopover(QWidget* parent) :
@@ -97,6 +99,8 @@ void AddLocationPopover::on_queryEdit_textChanged(const QString& arg1) {
 }
 
 void AddLocationPopover::on_listWidget_itemActivated(QListWidgetItem* item) {
+    if (d->done) return;
+    d->done = true;
     emit locationSelected(item->data(Qt::UserRole).value<TroposphereLocation>());
     emit done();
 }
